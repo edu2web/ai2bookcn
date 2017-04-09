@@ -12,6 +12,8 @@ App Inventor是一个可视化，可拖拽的编程工具，用于在Android平�
 
 插图0-1显示了一款应用的早期版本中使用的块语言，创作者Daniel Finnegan是一名从未学过编程的大学生。你能说出这个应用的功能吗?
 
+![](../images/1-24-1.png)
+
 图0-1 用App Inventor块语言来定义应用的功能
 
 这是一款短信“应答机”应用。开车时启动它，就可以对收到的短信进行自动回复。
@@ -120,7 +122,11 @@ App Inventor免费提供给任何人使用。它在线运行（不是桌面程�
 
 这个图标表示：测试环节以及测试说明。
 
+![](../images/note-1.png)
+
 这个图标表示：提示、建议或一般性注释。
+
+![](../images/test-1.png)
 
 # 如何使用本书
 
@@ -144,4 +150,4 @@ App Inventor的设计借鉴了此前的计算机辅助教育的研究成果，�
 
 我们还需特别感谢O'Reilly的编辑们，Courtney Nash、Brian Jepson，还有Kathy Riutzel、Brian Kernighan、Debby Wallach以及Rafiki Cai，感谢他们的反馈和见解。
 
-最后，我们还要感谢我们各自的配偶的支持：Ellen的丈夫Keith Golden，Hal的妻子Lynn Abelson，Liz的丈夫Kevin Looney，David的妻子Minerva Novoa。新妈妈Ellen还要感谢保姆Neil Fullagar的帮助。 
+最后，我们还要感谢我们各自的配偶的支持：Ellen的丈夫Keith Golden，Hal的妻子Lynn Abelson，Liz的丈夫Kevin Looney，David的妻子Minerva Novoa。新妈妈Ellen还要感谢保姆Neil Fullagar的帮助。
