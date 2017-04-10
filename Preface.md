@@ -12,7 +12,7 @@ App Inventor是一个可视化，可拖拽的编程工具，用于在Android平�
 
 插图0-1显示了一款应用的早期版本中使用的块语言，创作者Daniel Finnegan是一名从未学过编程的大学生。你能说出这个应用的功能吗?
 
-![](../images/1-24-1.png)
+![](./images/1-24-1.png)
 
 图0-1 用App Inventor块语言来定义应用的功能
 
