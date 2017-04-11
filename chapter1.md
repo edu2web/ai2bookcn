@@ -1,6 +1,7 @@
 本章将开启你的创建应用之旅。这里介绍了App Inventor的关键要素——组件设计器及块编辑器，并手把手地引导读者创建第一个应用：HelloPurr。在完成本章的学习之后，就可以开始创建自己的应用了。
 
 ![](./images/0-22.png)
+
 ![](./images/1-24.png)
 
 图1-1 HelloPurr应用
@@ -101,7 +102,7 @@ HelloPurr应用中的猫咪用Button组件来实现：创建一个普通Button�
   
   | Label	User | Interface |	Label1	| 显示文本“宠物小猫” |
   
-  | Sound |	Media	| Sound1播放猫叫声	| undefined|
+  | Sound |	Media	| Sound1播放猫叫声	| undefined |
 
 # 添加组件行为
 
@@ -127,6 +128,7 @@ HelloPurr应用中的猫咪用Button组件来实现：创建一个普通Button�
 不同于传统的程序代码（通常像混乱的“天书”一般），在App Inventor中，Blocks拼出了行为。在本例中，我们等于说，“嘿，App Inventor，当有人点击小猫时，播放猫叫声。”
 
 ![](./images/test-12.png)
+
 测试：让我们通过检查来确保一切正常——每当向应用中添加了新东西，就要进行测试，这非常重要。在测试设备上点击该按钮（或在模拟器上单击它）。你应该听到猫叫声。恭喜你，你的第一个应用跑起来了！。
 # 添加震动效果
 
