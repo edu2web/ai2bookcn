@@ -40,7 +40,7 @@
 
 本书原著为《App Inventor—Create Your Own Android Apps》，2011年由O'Reilly出版社出版，作者是来自旧金山大学的David Wolber教授、App Inventor发明人、MIT的Hal Abelson教授、谷歌工程师Ellen Spertus以及Liz Looney。
 
-![](./images/ai2cover2.jpeg)
+![](./images/1-24.png)
 
 本书针对零基础的编程学习者，前13章为案例教学，通过对13个简单应用的逐步讲解，学习者可以对编程的过程及基本概念有所了解，并掌握使用App Inventor编程的方法。后面的11章是指南或手册，从专业角度对编程的概念加以梳理，并针对Android应用特有的传感器及Web访问做了系统的介绍，使学习者对编程的认识上升到理论的高度。
 
