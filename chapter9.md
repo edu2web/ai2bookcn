@@ -31,7 +31,7 @@
 表9-1木琴应用的所有组件
 
 | 组件类型 |面板中分组 | 命名 | 作用 |
-|:------- |:--------|:------|: --------|
+|:------- |:--------|:------|:--------|
 | Button	|User  Interface|	Button1 |	播放低音C |
 |Button|	User Interface|	Button2|	播放D
 |Button	|User Interface|	Button3	|播放E
