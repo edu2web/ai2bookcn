@@ -126,6 +126,7 @@ NoLongerCollidingWith事件是与CollidedWith相反的事件，当两个碰到�
 目前为止我们讲述的动画案例都是利用Clock组件的计时功能，计时器事件每触发一次，物体就移动一次。采用Clock.Timer事件的方案是设定动画最普遍的方案，除了可以移动物体，还可以随时间改变物体的颜色，改变某些文字（好像应用自己在输入文字一样），或者让应用以某个速度说话，等等。
 
 App Inventor提供了另外一种不需要Clock组件而让物体的移动的方法。你可能已经注意到，ImageSprite及Ball组件都具有Heading（方向）、Speed（速度）及Interval（间隔）属性。与Clock.Timer方案中定义事件处理程序相比，这里可以在组件设计器及块编辑器中设置这些属性，来实现对sprite运动的控制。
+
 ![](./images/12-6.png)
 
 图17-12 Heading属性的取值范围
