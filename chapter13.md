@@ -1,4 +1,4 @@
-第13章 亚马逊掌上书店
+第13章 亚马逊掌上书店  
 十一月 20, 2015 ADMIN	一条评论
 假设你正在一家你很喜欢的书店里翻书，你想了解某一本书在Amazon.com（网上书店）的售价，那么这款“亚马逊掌上书店”应用就可以帮你实现这一愿望。通过扫描书上的条码，或输入书上的ISBN，应用将告诉你这本书当前在Amazon.com的最低售价。你也可以按照主题进行书籍的搜索。
 
@@ -82,15 +82,17 @@ Amazon API为调用者提供了一个Web页面，来说明API的使用方法。�
 
 图13-5 组件设计器中“亚马逊掌上书店”的用户界面
 表13-1 “亚马逊掌上书店”应用的组件列表
-组件类型	面板中分组	命名	作用
-Textbox	User Interface	SearchTextBox	用户在此输入关键字或ISBN
-HorizontalArrangement	Layout	HorizontalArrangement1	将按钮放置在同一行内
-Button	User Interface	SearchButton	点击启动关键字或ISBN搜索
-Button	User Interface	ScanButton	点击开始扫描书的ISBN条码
-Label	User Interface	Label1	搜索结果的标题
-Label	User Interface	ResultLabel	显示搜索结果
-TinyWebDB	Storage	TinyWebDB1	与Amazon.com交互
-BarcodeScanner	Sensors	BarcodeScanner1	扫描条码
+
+|组件类型|	面板中分组|	命名|	作用|
+|:--|--:|--:|:--:|
+|Textbox|	User Interface|	SearchTextBox|	用户在此输入关键字或ISBN|
+|HorizontalArrangement|	Layout|	HorizontalArrangement1|	将按钮放置在同一行内|
+|Button|	User| Interface|	SearchButton|	点击启动关键字或ISBN搜索|
+|Button|	User| Interface|	ScanButton|	点击开始扫描书的ISBN条码|
+|Label|	User| Interface|	Label1|	搜索结果的标题|
+|Label|	User| Interface|	ResultLabel|	显示搜索结果|
+|TinyWebDB|	Storage|	TinyWebDB1|	与Amazon.com交互|
+|BarcodeScanner|	Sensors|	BarcodeScanner1|	扫描条码|
 组件的属性设置如下：
 
 设置SearchTextBox的Hint属性为“输入关键字或ISBN”；
