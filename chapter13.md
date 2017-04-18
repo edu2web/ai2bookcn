@@ -23,7 +23,7 @@ Contents [hide]
 4.5 定制化API
 5 改进
 6 小结
-学习要点
+# 学习要点
 
 本章将学习以下内容：
 
@@ -32,10 +32,11 @@ Contents [hide]
 学会处理从web信息源返回的复杂数据。所谓复杂数据，具体来说，就是图书列表中的每本书都是一个列表，其中包含三个列表项：书名、价格及ISBN。
 此外我们将介绍用Python语言及谷歌的App引擎编写的源代码，并用它来创建自己的web service API。
 
-什么是API?
+# 什么是API?
 
 在开始设计组件和编写应用之前，我们来解释一下什么是API（应用程序接口），以及它如何工作。可以把API想象为一个网站，只是它不与人类交互，而是与其他计算机程序交互。
 
+![](./images/1-12.png)
 
 图13-1 模拟器中的“亚马逊掌上书店”
 API通常被称作“服务器端”程序，因为它们的特点就是为“客户端”程序提供信息。“客户端”程序负责实现与人类的接口——如App Inventor应用。如果你曾经在手机上使用Facebook 应用，你实际上是通过Facebook的客户端程序与Facebook的服务器端程序（API）进行通信。
@@ -50,10 +51,12 @@ Amazon API为调用者提供了一个Web页面，来说明API的使用方法。�
 
 1. 在浏览器中访问网站http://aiamazonapi.appspot.com/，你会看到如图13-2所示的页面（页面中的中文为译者添加）。
 
+![](./images/2-10.png)
 
 图13-2 App Inventor专用的Amazon API的说明及测试页面
 2. 本页面允许你对与此API的GetValue功能进行测试：在tag输入框中输入搜索词（如“natural computing”），然后单击“Get value”按钮。页面将显示从Amazon API返回的排在前五位的书籍列表，如图13-3所示。
 
+![](./images/3-10.png)
 
 图13-3 调用Amazon API来搜索与tag（或关键字）“natural computing”有关的书籍
 返回值是一个书的列表，每本书的信息由一对方括号包围[像这样]，提供了书名、售价及ISBN。如果仔细观察，你会发现每本书其实是另一主列表的子列表。主列表（natural computing）由外层的方括号包围，每个子列表（或书）被封闭在单独的一对方括号内。所以此API的返回值实际上是一个列表的列表，每个子列表提供一本书的信息。我们来细致地观察一下。
@@ -68,12 +71,14 @@ Amazon API为调用者提供了一个Web页面，来说明API的使用方法。�
 [[‘”App Inventor: Create Your Own Android Apps”‘, ‘$21.64’, ‘1449397484’]]
 返回结果中的双括号（[[）表示返回的仍然是一个列表的列表，虽然列表中只有一本书。这似乎有点奇怪，但这一点对需要访问这类信息的应用来说非常重要。
 
+![](./images/4-11.png)
 
 图13-4 用ISBN替代关键字在Amazon API中查询书籍
-设计组件
+# 设计组件
 
 “掌上书店”应用的用户界面比较简单：一个用于输入搜索词或ISBN的文本框，一个用于启动搜索（关键字或ISBN）的按钮，另一个启动扫描书的条码的按钮（稍后会用到），一个搜索结果标题的label，另一个显示搜索结果的label，还有两个非可视组件：TinyWebDB和条码扫描仪。表13-1列出了图13-5中所示的所有组件，对照检查你的结果。
 
+![](./images/5-11.png)
 
 图13-5 组件设计器中“亚马逊掌上书店”的用户界面
 表13-1 “亚马逊掌上书店”应用的组件列表
@@ -91,11 +96,11 @@ BarcodeScanner	Sensors	BarcodeScanner1	扫描条码
 设置SearchTextBox的Hint属性为“输入关键字或ISBN”；
 设置Button及Label的Text属性：如图13-5所示；
 设置TinyWebDB组件的serviceURL属性为http://aiamazonapi.appspot.com/ 。
-设计行为
+# 设计行为
 
 在块编辑器中设定下列行为：
 
-按关键字搜索：用户输入关键字并点击SearchButton来调用Amazon搜索。通过调用TinyWebDB.GetValue来实现这一点；
+## 按关键字搜索：用户输入关键字并点击SearchButton来调用Amazon搜索。通过调用TinyWebDB.GetValue来实现这一点；
 按ISBN搜索：用户输入一个ISBN并点击SearchButton；
 条码扫描：用户点击ScanButton启动扫描仪，扫描ISBN完成后将启动Amazon搜索；
 处理图书列表：首先采用默认方式显示Amazon返回的数据。稍后再加以修改，采用有组织的方式来显示每本书的书名、售价及ISBN。
@@ -105,41 +110,45 @@ BarcodeScanner	Sensors	BarcodeScanner1	扫描条码
 
 当Amazon返回结果时，将触发TinyWebDB.GotValue事件。现在用ResultsLabel直接显示返回结果，如图13-6所示，当见到这些真实的数据后，可以采取更为复杂的方式来显示数据。
 
+![](./images/6-11.png)
 
 图13-6 向API发送搜索请求，并将结果显示在ResultsLabel中
-块的作用
+### 块的作用
 
 当点击SearchButton时，TinyWebDB1.GetValue开始向API发出请求。随请求一同发送的tag正是用户在 SearchTextBox中输入的内容。
 
 从第十章“出题”应用中得知，TinyWebDB.GetValue发出的请求并不能立即获得结果，而是在收到从API返回的数据时，触发TinyWebDB1.GotValue事件。在GotValue块中，首先检查返回值是否为列表，如果是，则数据被写入ResultsLabel。（如果Amazon API离线或搜索的关键字不存在，将没有数据返回。）再输入ISBN“1118717376”试试看。
 
+![](./images/7-10.png)
 
 图13-7 搜索“Android”返回的结果
 
 测试：在输入框中输入搜索词，如“Android”，然后点击“搜索”按钮。你将得到类似于图13-7的结果。注意：手机上返回的结果与网页上的结果略有不同：方括号变成了圆括号。（这个界面看起来很糟糕，稍后我们会处理。）
 
-消除用户的困惑
+## 消除用户的困惑
 
 在前几章中了解到，使用TinyWebDB请求数据的过程需要一点时间，在收到返回的数据之前，用户界面上悄无声息，这时用户会感到困惑，因此从用户友好的角度考虑，添加一点提示是非常必要的。这里我们用ResultLabel来显示提示信息。如图13-8所示。但如果网络速度很快，数据很快返回并触发GotValue事件，则几乎看不到提示，数据就显示出来了。
 
+![](./images/8-9.png)
 
 图13-8 添加提示信息消除用户的困惑
-扫描一本书
+## 扫描一本书
 
 现实情况是：在手机上输入字符通常不那么容易，而且总会出一些小错。如果能够在应用中使用条码扫描，那么问题会变得简单（并且几乎不会出错）。这是Android手机内置的另一项强大的功能，你可以用App Inventor轻而易举地实现它。
 
 函数BarcodeScanner.DoScan用于启动扫描仪，可以在ScanButton被点击时调用它。一旦扫描操作完成，将触发BarcodeScanner.AfterScan事件。该事件带有一个参数result，其中保存了扫描所获得的信息。在本例中，result即是用于搜索的ISBN，如图13-9所示。
 
+![](./images/9-9.png)
 
 图13-9 用户扫描书上的条码获得ISBN并启动搜索
-块的作用
+### 块的作用
 
 点击ScanButton将启动扫描仪，即执行BarcodeScanner1.DoScan。扫描完成时触发AfterScan事件。该事件带有result参数，在本例中为书的ISBN。用ResultLabel告诉用户正在进行搜索，并在SearchTextBox中显示result（扫描获得的ISBN），最后调用TinyWebDB.GetValue来启动搜索。仍然使用之前定义的TinyWebDB.GotValue事件处理程序来处理返回的书籍信息。
 
 
 测试：点击ScanButton并扫描一本书的条码。应用中是否显示了该图书的信息？
 
-改进信息的显示
+## 改进信息的显示
 
 我们所创建的这类客户端应用，可以按需要来处理收到的数据，可以与其他网上商店进行价格比较，也可以用书名信息来搜索其他图书馆中的同类书籍。
 
@@ -151,7 +160,7 @@ BarcodeScanner	Sensors	BarcodeScanner1	扫描条码
 
 下面将使用这些变量，并将它们显示出来，试试看按需要创建这些变量，并组织一些块来分行显示每一项搜索结果，完成之后与图13-10进行比较。
 
-块的作用
+### 块的作用
 
 这里定义了四个变量：resultList、title、cost及ISBN，用来保存Amazon API返回数据中的每一条数据。从API返回的数据保存在参数valueFromWebDB中，这里将它另存为resultList。其实程序可以直接使用valueFromWebDB，但通常会将它另存为一个变量，以便在该事件处理程序之外也可以使用这一数据。（像valueFromWebDB这样的参数仅在事件处理程序内有效，事件处理程序之外无法访问该参数值。）
 
@@ -159,6 +168,7 @@ foreach循环用来遍历返回结果中的每个数据项。回想一下，从A
 
 现在我们要清醒地面对项变量bookitem，它是一个列表，其中第一项是书名，第二项是售价，第三项是ISBN，因此，select list item块利用索引值（index）将这些数据逐项提取出来，并保存在事先定义的变量中（title、cost及ISBN）。
 
+![](./images/10-9.png)
 
 图13-10 在遍历过程中提取每本书的书名、售价及ISBN，并逐行显示它们
 一旦数据被拆解成这种方式，就可以随意地摆布它们。程序中的局部变量只是作为join块的组成部分，来逐行显示书名、售价及ISBN。
@@ -166,7 +176,7 @@ foreach循环用来遍历返回结果中的每个数据项。回想一下，从A
 
 测试：尝试搜索其他书，看看返回的信息是如何显示的。应该类似于图13-11。
 
-定制化API
+## 定制化API
 
 我们所连接的API(http://aiamazonapi.appspot.com)是由Python(编程语言)和谷歌应用引擎(App Engine)创建的。开发者可以将应用引擎上创建并发布网站或服务(API)。只有当你的网站或服务非常受欢迎时(这意味着你使用了大量的谷歌服务)，才需要向App Engine付费。
 
@@ -174,6 +184,7 @@ foreach循环用来遍历返回结果中的每个数据项。回想一下，从A
 
 这种修改确实需要有Python编程的知识，所以要小心！但是加入你已经通过本书完成了App Inventor的学习，那么是该考虑迎接新的挑战了。想要学习Python，可以查看网上的文章《如何像计算机科学一样思考：学会使用Python》(http://openbookproject.net//thinkCSpy/)，并查看本书第24章的“创建App Inventor API”部分。
 
+![](./images/11-9.png)
 
 图13-11 用更有条理的方式显示搜索结果
 改进
