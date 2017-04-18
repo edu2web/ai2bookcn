@@ -53,7 +53,7 @@ Amazon API为调用者提供了一个Web页面，来说明API的使用方法。�
 
 ![](./images/2-10.png)
 
-图13-2 App Inventor专用的Amazon API的说明及测试页面
+图13-2 App Inventor专用的Amazon API的说明及测试页面  
 2. 本页面允许你对与此API的GetValue功能进行测试：在tag输入框中输入搜索词（如“natural computing”），然后单击“Get value”按钮。页面将显示从Amazon API返回的排在前五位的书籍列表，如图13-3所示。
 
 ![](./images/3-10.png)
