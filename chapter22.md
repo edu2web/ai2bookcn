@@ -211,9 +211,12 @@ joe@gmail.com	McCain
 
 # 设置Web数据库
 
-本章前面提到过，设立于http://appinvtiny webdb.appspot.com的默认web数据库仅供原型设计以及应用的测试，在向真正的用户发布应用之前，需要为应用创建一个专用的数据库。
+本章前面提到过，设立于
+http://appinvtinywebdb.appspot.com
+的默认web数据库仅供原型设计以及应用的测试，在向真正的用户发布应用之前，需要为应用创建一个专用的数据库。
 
-访问网站http://appinventorapi.com/ program-an-api-python/，按照上面的说明就可以创建web数据库。该网站由本书的作者之一Wolber教授创建，网站提供了示例程序以及设置App Inventor web数据库及API(应用程序接口)的说明。按照说明，你可以下载相关的程序，并且只要对配置文件进行少量修改，就可以使用这些程序。经过设置的代码与之前使用的App Inventor默认数据库相同，它运行在Google的应用引擎上——一个云计算服务，运行在Google服务器上免费的web数据库。这样，你就建起了属于自己的web数据库（与App Inventor的协议兼容），几分钟就可以运行起来，并用它来创建web移动应用。
+访问网站http://appinventorapi.com/program-an-api-python/
+，按照上面的说明就可以创建web数据库。该网站由本书的作者之一Wolber教授创建，网站提供了示例程序以及设置App Inventor web数据库及API(应用程序接口)的说明。按照说明，你可以下载相关的程序，并且只要对配置文件进行少量修改，就可以使用这些程序。经过设置的代码与之前使用的App Inventor默认数据库相同，它运行在Google的应用引擎上——一个云计算服务，运行在Google服务器上免费的web数据库。这样，你就建起了属于自己的web数据库（与App Inventor的协议兼容），几分钟就可以运行起来，并用它来创建web移动应用。
 
 一旦创建并部署了属于自己的web数据库（因为只有你知道它的URL地址），你就可以用它来创建应用。不过还需要在应用中修改TinyWebDB组件的ServiceURL属性，以便组件可以用新的定制数据库来保存及提取数据。图22-13描述了如何操作。
 
@@ -221,7 +224,8 @@ joe@gmail.com	McCain
 
 图22-13 将ServiceURL属性修改为你的定制数据库的URL地址
 
-在这个例子中，ServiceURL被设置为http://usfweb service.appspot.com，是本书的作者之一为他的学生们创建的一个web数据库（图22-13中”appsport.com”后面的部分被输入框遮挡住了）。设定了ServiceURL之后，所有的TinyWebDB.StoreValue及TinyWebDB.GetValue的调用都将执行这个特定的URL。
+在这个例子中，ServiceURL被设置为http://usfwebservice.appspot.com
+，是本书的作者之一为他的学生们创建的一个web数据库（图22-13中”appsport.com”后面的部分被输入框遮挡住了）。设定了ServiceURL之后，所有的TinyWebDB.StoreValue及TinyWebDB.GetValue的调用都将执行这个特定的URL。
 
 # 小结
 
