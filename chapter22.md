@@ -33,8 +33,12 @@ App Inventor提供了两个便于操作数据库的组件：TinyDB及TinyWebDB�
 同样，可以将App Inventor的TinyDB数据库理解为一个表，其中包含了许多tag-value对儿，在图22-1中的TinyDB.StoreValue块执行完成后，设备数据库将增加一条输入，如表22-1中所列。
 
 表22-1 存储到数据库中的tag-value对：“responseMessage”-“我在睡觉，别来烦我”
-TAG	VALUE
-responseMessage	我在睡觉，别来烦我
+
+
+|TAG|	VALUE|
+|:------|:---|
+|responseMessage|	我在睡觉，别来烦我|
+
 一个应用中可以有许多tag-value对，用来永久保存需要保留的各种数据项。标签必须是文本，而值既可以是单个的数据（一段文本或一个数字），也可以是一个列表。每个标签只能对应一个值，当你使用同一个标签保存一个新值时，将覆盖原来的值。
 
 ## 从TinyDB中提取数据
@@ -89,9 +93,13 @@ TinyWebDB.StoreValue的作用与TinyDB.StoreValue一样，只不过是将数据�
 用于识别数据的标签是用户的email地址，之前已经被保存到变量myEmail中（稍后将看到），而要保存的值是用户在VoteTextBox输入的内容。因此，如果用户的email地址是“wolber@gmail.com”，而他的投票是“Obama”，则作为整体存入数据库的信息如表22-2所示。
 
 表22-2 记录在数据库中的标签（tag）及值（value）
-TAG	VALUE
-wolber@gmail.com	Obama
-TinyWebDB.StoreValue块将这个tag-value对发送到位于http://appinvtinywebdb.appspot.com的web数据库服务器中。由于这里用的是默认的服务，会显示来自于各种应用的很多数据，因此在第一个显示窗口中，有可能看到，也有可能看不到你的数据。如果看不到，可以用页面上的GetValue链接用特定标签来搜索数据。
+
+|TAG|	VALUE|
+|:------|:---|
+|responseMessage|		Obama|
+
+TinyWebDB.StoreValue块将这个tag-value对发送到位于
+http://appinvtinywebdb.appspot.com的web数据库服务器中。由于这里用的是默认的服务，会显示来自于各种应用的很多数据，因此在第一个显示窗口中，有可能看到，也有可能看不到你的数据。如果看不到，可以用页面上的GetValue链接用特定标签来搜索数据。
 
 ![](./images/test.png)
 
