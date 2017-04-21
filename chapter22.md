@@ -63,9 +63,11 @@ TinyDB组件将数据保存在Android设备的本地数据库中，这一点适�
 
 TinyWebDB是TinyDB的web版本，可以让应用将数据保存到web上，方法与TinyDB类似，使用StoreValue与GetValue协议。
 
-默认情况下，TinyWebDB组件使用由App Inventor团队创建的web数据库保存数据，从http://appinvtinywebdb.appspot.com可以访问到该数据库。该网站包括一个数据库，并能响应来自web的保存及提取数据的请求；此外，还提供了一个人类可读的web接口，可以让数据库管理员（也就是你）能够查看到在此保存的数据。
+默认情况下，TinyWebDB组件使用由App Inventor团队创建的web数据库保存数据，从http://appinvtinywebdb.appspot.com
+可以访问到该数据库。该网站包括一个数据库，并能响应来自web的保存及提取数据的请求；此外，还提供了一个人类可读的web接口，可以让数据库管理员（也就是你）能够查看到在此保存的数据。
 
-感兴趣的话，可以在浏览器中访问http://appinvtinywebdb.appspot.com，并检查保存在此的tag-value类型的数据。
+感兴趣的话，可以在浏览器中访问http://appinvtinywebdb.appspot.com
+，并检查保存在此的tag-value类型的数据。
 
 这个默认的数据库仅用于开发，对于所有App Inventor程序员提供了有限的空间和权限。由于所有的App Inventor应用都可以使用该数据库，因此不能确保你的数据不被其它的应用所覆盖。
 
@@ -99,7 +101,8 @@ TinyWebDB.StoreValue的作用与TinyDB.StoreValue一样，只不过是将数据�
 |responseMessage|		Obama|
 
 TinyWebDB.StoreValue块将这个tag-value对发送到位于
-http://appinvtinywebdb.appspot.com的web数据库服务器中。由于这里用的是默认的服务，会显示来自于各种应用的很多数据，因此在第一个显示窗口中，有可能看到，也有可能看不到你的数据。如果看不到，可以用页面上的GetValue链接用特定标签来搜索数据。
+http://appinvtinywebdb.appspot.com
+的web数据库服务器中。由于这里用的是默认的服务，会显示来自于各种应用的很多数据，因此在第一个显示窗口中，有可能看到，也有可能看不到你的数据。如果看不到，可以用页面上的GetValue链接用特定标签来搜索数据。
 
 ![](./images/test.png)
 
