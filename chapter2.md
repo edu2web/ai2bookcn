@@ -49,6 +49,7 @@
 ![](./images/test-11.png)
 
 测试：如果你还没有点击“Connect”来连接测试设备，那么做好连接，然后检查一下应用在设备（如果已经连接）上的表现。
+
 # 使用Arrangement组件改善布局
 
 现在三个按钮排成一列纵队，我们希望它们能排成一行，如图2-3所示，使用HorizontalArrangement组件来实现组件的水平排列：
@@ -79,6 +80,7 @@ Canvas像一块画布，用户可以在上面绘画（画圆、画等）。添�
 ![](./images/4-22.png)
 
 图2-4 背景图片设为kitty.png的DrawingCanvas组件
+
 # 设置底部按钮及照相机组件
 
 1. 从组件面板中拖出第二个HorizontalArrangement，放在canvas下方，再拖两个Button并置于屏幕底部的HorizontalArrangement中；将第一个按钮改名为TakePictureButton，Text属性设为“拍照”；第二个按钮改名为WipeButton，Text属性设为“清除”；
@@ -143,6 +145,7 @@ Canvas像一块画布，用户可以在上面绘画（画圆、画等）。添�
 ![](./images/test-11.png)
 
 测试：看看测试设备上都有什么。触碰 DrawingCanvas，手指碰过的地方会留下一个圆点。如果在设计器中将DrawingCanvas.PaintColor属性设置为红色，那么圆点也是红色（否则应该是默认的黑色）。
+
 # 添加画线的拖拽事件
 
 下面添加拖拽事件处理程序，先看一下触碰（Toughed）事件与拖拽（Dragged）事件的区别：
@@ -174,6 +177,7 @@ DrawingCanvas.DrawLine块有四个参数，两点确定一线：设（X1，Y1）
 ![](./images/test-11.png)
 
 测试：在设备上测试一下刚刚设定的行为：在屏幕上随意拖动手指，画出线段及曲线；触碰屏幕画出一个圆点。
+
 # 添加按钮事件处理程序
 
 应用已经实现了画线功能，但现在只能画红线。下面添加颜色按钮的事件处理程序，用户可以改变画笔的颜色；同样设置清除按钮WipeButton，以便用户可以清除画面并重新开始。 在块编辑器中：
@@ -188,6 +192,7 @@ DrawingCanvas.DrawLine块有四个参数，两点确定一线：设（X1，Y1）
 ![](./images/14-8.png)
 
 图2-14 单击颜色按钮改变DrawingCanvas的画笔颜色；单击清除按钮清空屏幕
+
 # 让用户拍照片
 
 App Inventor应用可以与Android设备的强大功能进行交互，包括相机功能。为了增加应用的趣味性，用户可以将绘图背景设置为他们用相机拍摄的照片。
@@ -206,6 +211,7 @@ App Inventor应用可以与Android设备的强大功能进行交互，包括相�
 ![](./images/test-11.png)
 
 测试：在设备上点击“拍照”按钮并拍摄照片，猫的图片变成了你拍的照片。你可以在自己的照片上进行绘画。（用Wolber教授的照片绘画是学生们的一大乐事，如图2-16。）（Wolber教授是本书的作者之一。）
+
 # 改变画笔大小
 
 ![](./images/16-5.png)
@@ -220,6 +226,7 @@ App Inventor应用可以与Android设备的强大功能进行交互，包括相�
 ![](./images/17-5.png)
 
 图2-17 将dotSize变量的初始值设为2
+
 # 使用变量
 
 下一步，我们要修改DrawingCanvas.Touched事件处理程序，将其中DrawingCanvas.DrawCircle块的参数r的固定值用变量dotSize来代替。（我们先将dotSize的初始值设定为“固定”的2，但稍后我们将改变dotSize的值，并同时改变画笔的大小。）
@@ -230,6 +237,7 @@ App Inventor应用可以与Android设备的强大功能进行交互，包括相�
 ![](./images/18-1.png)
 
 图2-18 画笔的大小取决于变量dotSize中保存的值
+
 # 修改变量值
 
 现在变量魔法登场，变量dotSize允许用户选择画笔的大小，而事件处理程序也将以dotSize为半径来画圆。通过设计SmallButton.Click和BigButton.Click的事件处理程序来实现此功能：
@@ -248,6 +256,7 @@ App Inventor应用可以与Android设备的强大功能进行交互，包括相�
 ![](./images/test-11.png)
 
 测试：尝试单击“大圆”、“小圆”按钮，然后在DrawingCanvas上触碰，所绘圆点的大小是否不同？画线呢？线没有变化，因为只有DrawingCanvas.DrawCircle块使用了变量dotSize。在此基础上，考虑修改块的设置，以使画笔的大小，对画线也同样有效。注意：DrawingCanvas有一个“LineWidth（线宽）”的属性。
+
 # 油漆桶的完整应用
 
 
@@ -257,6 +266,7 @@ App Inventor应用可以与Android设备的强大功能进行交互，包括相�
 ![](./images/20-1.png)
 
 图2-20 油漆桶应用中块的最终设置
+
 # 改进
 
 可以考虑做以下改进：
@@ -285,6 +295,7 @@ App Inventor应用可以与Android设备的强大功能进行交互，包括相�
 ![](./images/paint.png)
 
 图2.1 windows中的画笔应用
+
 # 开发及测试
 
 如果无法访问App inventor网站，可以尝试译者提供的替代版本，或点击页面右上角的“开发体验”按钮。
@@ -292,6 +303,7 @@ App Inventor应用可以与Android设备的强大功能进行交互，包括相�
 ![](./images/barcode-1.png)
 
 图2.2 用手机扫描下载并安装”AI伴侣”
+
 # 骆驼命名法
 
 这是一个编程术语，指的是变量的命名规则：由于变量名中不允许出现空格，因此当需要用多个英文单词为变量命名时，通过每个单词的首字母大写来区分不同的单词，如本例中的红色按钮命名为RedButton，其中第一个单词的首字母也可以小写，即redButton。
