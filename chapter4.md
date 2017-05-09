@@ -13,6 +13,7 @@
 * Screen.Initialize事件：在应用启动时加载自定义回复内容；
 * Text-to-Speech组件：用于大声朗读文字；
 * LocationSensor组件：报告司机的当前位置。
+
 # 准备开始
 
 
@@ -53,6 +54,7 @@ TTS模块安装后，可以测试其功能。对于Android2以上版本，在”
 * 设置NewResponseTextbox的Text属性为“”（让文本框为空，等待用户输入）；
 * 设置NewResponseTextbox的Hint（提示）属性为“输入新的回复内容”，Width设为“Fill Parent”；
 * 设置SubmitResponseButton的Text属性为“修改回复内容。”
+
 # 为组件添加行为
 
 从基本的自动回复行开始，再逐步添加更多功能。
@@ -75,6 +77,7 @@ TTS模块安装后，可以测试其功能。对于Android2以上版本，在”
 ![](./images/3-19.png)
 
 图4-3 对收到的短信进行自动回复
+
 # 块是作用
 
 手机收到短信将触发Texting1.MessageReceived事件。如图4-3所示，发送者的手机号保存在参数number中，短信内容保存在参数messageText中。自动回复就是要向发送者发送一条短信，为此要先设置Texting组件的两个关键属性：PhoneNumber及Message。PhoneNumber设置为发送者的手机号，Message设置为ResponseLabel中显示的内容：“我正在开车，稍后与您联系。”设置完成之后，调用Texting. SendMessage实现自动回复。 注释是编程工作的重要组成部分，它可以告诉其他程序员那些与代码有关的重要信息。在块上单击右键，在快捷菜单中选择“Add Comment”（添加注释），此时块的左上方会出现蓝色问号，点击蓝色问号，会弹出文本输入框，可供输入注释信息；点击蓝色问号还可以隐藏注释信息。注释在应用中不是必须的，这里添加注释是为了介绍每个块的功能。 很多人用注释来记录创建应用的过程；注释可以解释程序的功能，但不会改变程序的行为。无论是你自己今后要修改程序，还是其他人要对程序做个性化设置，注释都是非常重要的。“没有不变的软件”已经成为共识，因此，代码的注释是软件工程中非常重要的环节，尤其像App Inventor这样的开源软件。
@@ -82,6 +85,7 @@ TTS模块安装后，可以测试其功能。对于Android2以上版本，在”
 ![](./images/test-9.png) 
 
 测试： 需要用第二部手机来测试程序。如果没有，可以注册申请Google Voice或其他类似的服务，并从注册的服务中给你的手机发送短信。用第二部手机给正在运行本应用的手机发短信，第二部手机是否收到了回信？
+
 # 输入一个定制的回复
 
 下面来添加更多的程序块，允许用户输入自定义的回复内容。在组件设计器中，已经添加了名为NewResponseTextbox的TextBox组件，用于输入自定义回复信息，当用户点击SubmitResponseButton时，NewResponseTextbox中的内容被复制到ResponseLabel中，这就是自动回复短信的内容。表4-3列出了在ResponseLabel中显示新的回复内容所需的块。
@@ -93,6 +97,7 @@ TTS模块安装后，可以测试其功能。对于Android2以上版本，在”
 | SubmitResponseButton.Click	| SubmitResponseButton	| 点击按钮提交新的回复信息 |
 | set ResponseLabel.Text to	| ResponseLabel	| 为该Label设置新的文本内容 |
 | NewResponseTextbox.Text	| NewResponseTextbox	| 用户在这里输入新的回复内容 |
+
 # 块的作用
 
 一个典型的输入表单 的作用是：首先在文本框中输入文字，然后单击提交按钮来通知系统做处理。图4-4显示了用户点击“修改回复内容”按钮时， SubmitResponseButton.Click事件被触发。
@@ -120,6 +125,7 @@ TTS模块安装后，可以测试其功能。对于Android2以上版本，在”
 | TinyDB1.StoreValue	| TinyDB1	| 将用户的定制信息保存在手机内置的数据库中 |
 | "responseMessage"	| Text	| 以此作为保存数据的标签 |
 | ResponseLabel.Text	| ResponseLabel	| 已设定的回复信息显示在这里 | 
+
 # 块的作用
 
 TinyDB从ResponseLabel的Text属性中提取内容，并将其保存在数据库中。如图4-5所示，向数据库中保存数据时，要为数据设置一个tag（标签），本例中的tag是“responseMessage”。可以把tag想象成数据在数据库中的存放地址，是数据的唯一标识。在下节中你将看到，必须使用相同的tag（“responseMessage”）才能将数据从数据库中读取出来。
@@ -127,6 +133,7 @@ TinyDB从ResponseLabel的Text属性中提取内容，并将其保存在数据库
 ![](./images/5-20.png)
 
 图4-5 永久保存自定义回复信息
+
 # 应用启动时读取定制信息
 
 将定制回复信息保存在数据库中，以便用户再次启动应用时，保存的数据可以被重新读取出来。App Inventor提供了一个特殊的事件块：Screen1.Initialize，当应用启动时，将触发该事件（我们在第3章MoleMash中使用过）。将Screen.Initialize块拖出来，并将某些程序块放在其中，那么这些程序块会在应用启动时逐一执行。 在本应用中，Screen1.Initialize事件的处理程序会检查数据库中是否存放了自定义回复内容。如果是，则使用TinyDB.GetValue函数加载存储的内容。实现这一功能所需的块见表4-5。
@@ -148,6 +155,7 @@ TinyDB从ResponseLabel的Text属性中提取内容，并将其保存在数据库
 | 数字0 |	Math	| 用于比较长度 |
 | set ResponseLabel.Text to	| ResponseLabel |	如果读出的数据有内容，放在label中 |
 | get global response	 | Variables	| 从变量中读出的数据（定制回复信息）|
+
 # 块的功能
 
 如图4-6所示，要想理解这些块的功能，必须设想用户的使用过程：首次打开应用，输入自定义回复，随时退出并再次打开应用。用户首次启动应用时，数据库中没有定制回复可供加载，因此ResponseLabel中显示的是默认回复。再次启动时，才有可能从数据库中加载定制回复，并将其显示在ResponseLabel中。
@@ -160,6 +168,7 @@ TinyDB从ResponseLabel的Text属性中提取内容，并将其保存在数据库
 ![](./images/test-9.png)
 
 测试：上述功能无法进行实时测试，因为每次连接“AI伴侣”启动应用时，数据库都会被清空。因此需要选择“build->App（provide QR code）”，然后扫描条码，将应用下载安装到手机上。安装之后，在NewResponseTextbox中输入新的回复信息并单击SubmitResponseButton按钮；关闭应用并重新启动它，这次定制回复信息出现了吗？
+
 # 大声读出收到的短信
 
 本节将修改应用：收到短信后，手机将大声朗读发送者的电话号码以及短信内容。开车收到短信，虽然有自动回复功能，但你还是禁不住想知道短信的内容。使用text-to-speech功能，就可以手不离方向盘而收听到短信的内容。 Android设备提供了text-to-speech功能，而App Inventor提供了一个TextToSpeech组件，它可以读出任何text（文本信息 ）（注意，此处“text”指的是一般意义上的字/word：一串字母、数字以及标点符号组成的文本，而不是短信文本 。） 在本章的“准备开始”部分，我们要求你从Android Market下载一个text-to-speech的模块。如果你还没做，现在该去做了。根据需要安装并配置完模块之后，就可以在App Inventor中使用TextToSpeech组件了。
@@ -180,6 +189,7 @@ TextToSpeech组件的使用非常简单，只需调用它的Speak函数并插入
 | get number	| Variables |	获得短信发送者的电话号码 |
 |  “. The message is”	| Text	| 在读完电话号码之后稍加停顿，然后说”The message is” |
 | get messageText |	Variables |	获得收到的短信文本 |
+
 # 块的功能
 
 在自动回复动作完成之后，将调用TextToSpeech1.Speak函数，如图4-8的下半部分所示。你可以在TextToSpeech1.Speak函数的消息槽中插入任何文本对象。在这种情况下，join块用来生成被读出的内容。它将几段文字串连在一起，最后生成类似这样的信息：“SMS text received from 111-222-3333. The message is：hello.”
@@ -191,6 +201,7 @@ TextToSpeech组件的使用非常简单，只需调用它的Speak函数并插入
 ![](./images/test-9.png) 
 
 测试：你需要第二部手机来测试应用。用第二部手机发送文字【必须是英文】到你的测试手机上。你的手机大声读出信息了吗？它是否照常发送自动回复？
+
 # 在回复中加入位置信息
 
 像Facebook的Places以及Google的Latitude等类型的应用，都是利用GPS信息来帮助人们跟踪彼此的位置信息。这样的应用最令人担忧的是隐私问题，原因之一是它引发了人们对“老大哥”的恐惧，这里的“老大哥”指的是那些设法跟踪其公民下落的集权政府。但是使用位置信息的应用的确非常有用，试想一个迷路的小孩，或者那些在森林里迷路的徒步旅行者。 在“开车不发短信”的应用中，位置跟踪让回复的短信再多一点内容，而不只是“我正在开车”，回复的信息可以是这样的：“我正在北京东直门内大街209号开车”。对于那些正在等待朋友或家人到来的人来说，这些额外的信息非常有益。 App Inventor提供了LocationSensor（位置传感器）组件，作为手机的GPS （Global Positioning System全球定位系统）功能的接口。除了纬度和经度信息，LocationSensor也可以接入到谷歌地图，为司机提供当前位置的地址信息。 值得注意的是，LocationSensor并不总在读取信息，因此务必要恰当地使用这一组件。具体地讲，应用只对LocationSensor.LocationChanged事件做出响应，而两种情况会触发LocationChanged事件：①当手机的位置传感器第一次收到位置信息时；②随着手机的移动，产生新的位置信息时。使用表4-7中列出的块，具体方法是：当LocationChanged事件触发时，将当前地址信息保存到变量lastKnownLocation中，再将变量值插入到自动回复信息中。
@@ -208,6 +219,7 @@ TextToSpeech组件的使用非常简单，只需调用它的Speak函数并插入
 ![](./images/9-15.png)
 
 图4-9每当传感器收到GPS位置信息时，用变量记录手机的位置
+
 # 块的功能
 
 当位置传感器首次读取位置信息时，LocationSensor1.LocationChanged事件被触发，随着设备的移动，还会生成新的位置信息，事件将被再次触发。由于自动回复信息中要包括地址信息，因此，通过调用LocationSensor1.CurrentAddress函数 来获取地址信息，并将其保存在lastKnownLocation变量中，如图4-9所示。在后台，这个函数会调用谷歌地图（通过API 来调用，将在第24章学到），并根据传感器获得的经纬度信息来确定最近的街区地址。 注意，这些块只完成了一半的工作，还要将位置信息插入自动回复信息中，再回复给发件人。
@@ -224,6 +236,7 @@ TextToSpeech组件的使用非常简单，只需调用它的Speak函数并插入
 | ResponseLabel.Text |	ResponseLabel |	不包含位置信息的定制回复信息 |
 | “我最后的位置在：”	| Text	| 原定制信息之后的位置信息提示词 |
 | global lastKnownLocation	| Variables	| 地址信息，如：“北京市东城区东直门内大街209号” |
+
 # 块的功能
 
 向回复中添加位置信息需要LocationSensor1.LocationChanged事件与变量lastKnownLocation的协作。如图4-10所示，并非直接发送ResponseLabel.Text中的信息，而是使用join块将若干段信息整合起来：原有的自动回复信息+“ 我的最后位置在：”+变量lastKnownLocation。
@@ -236,6 +249,7 @@ TextToSpeech组件的使用非常简单，只需调用它的Speak函数并插入
 ![](./images/test-9.png)
 
 测试：用第二部手机发送短信到运行应用的手机上，第二个手机是否接收到了带有位置信息的自动回复？如果没有，请确保你已经开启了第一部手机的GPS定位功能。
+
 # 完整的应用：开车不发短信
 
 图4-11中显示了“开车不发短信”最终的块的配置
@@ -243,6 +257,7 @@ TextToSpeech组件的使用非常简单，只需调用它的Speak函数并插入
 ![](./images/11-14.png)
 
 图4-11 完整的“开车不发短信”应用（同时显示所有注释）
+
 # 改进
 
 当应用已经付诸使用，你也许会想到做一些改进，例如：
@@ -250,6 +265,7 @@ TextToSpeech组件的使用非常简单，只需调用它的Speak函数并插入
 * 编写另一个版本，允许用户针对某些特定来信号码定制回复内容。你需要增加一个条件(if)块，来检查这些来信的手机号。有关条件块（if）的更多信息，请参见第18章；
 * 再编写一个版本，根据用户是否在某个纬度/经度范围内，来回复定制信息。这样，如果应用判断你在房间222，它会回复“鲍勃在222房间，现在不能回复短信。”有关LocationSensor以及确定边界的更多信息，请参见第23章；
 * 另一个版本，当短信发送者的手机号码在某个“通知”列表中时，发出提醒铃声。关于如何使用列表，请参阅第19章。
+
 # 小结
 
 下面是本章涉及到的一些概念：
@@ -263,6 +279,7 @@ TextToSpeech组件的使用非常简单，只需调用它的Speak函数并插入
 如果你想对短信处理应用做进一步探索，请参考第11章的Broadcast Hub（广播中心）应用。  
 
 # 附录
+
 
 ## 背景知识
 
