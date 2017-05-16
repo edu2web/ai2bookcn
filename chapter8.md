@@ -102,12 +102,15 @@ select list item块用来选择列表中的项，使用中要求指定list（列
 第一个行为是，在应用启动时选择QuestionList中的第一道题，将其写入QuestionLabel；还记得“Android，我的车在哪儿？”的应用吧，如果想让某件事发生在应用启动时，可以将有关指令放在Screen1.Initialize事件处理程序中，表8-4中列出所需的块。
 
 表8-4 应用启动时加载第一个问题所需的块
-块的类型	所在抽屉	作用
-Screen1.Initialize	Screen1	应用启动时触发该事件
-set QuestionLabel.Text to	QuestionLabel	将第一道题内容写入QuestionLabel
-select list Item	Lists	从QuestionList中选择第一道题
-get Global QuestionList	Variables	从其中选择问题的列表
-数字1	Math	用索引值1来选择第一道题
+
+|块的类型|	所在抽屉|	作用|
+|:---|:----|:-----|
+|Screen1.Initialize	|Screen1	|应用启动时触发该事件|
+|set QuestionLabel.Text to	|QuestionLabel	|将第一道题内容写入QuestionLabel|
+|select list Item	|Lists	|从QuestionList中选择第一道题|
+|get Global QuestionList	|Variables|	从其中选择问题的列表|
+|数字1	|Math|	用索引值1来选择第一道题|
+
 ## 块的作用
 
 应用启动时触发Screen1.Initialize事件。如图8-5所示，变量QuestionList中的第一项被选中，并被写入QuestionLabel.Text。因此，应用启动时，用户会看到第一道题。
@@ -138,13 +141,15 @@ get Global QuestionList	Variables	从其中选择问题的列表
 当点击“下一题”按钮时，应用要问一个问题，并根据问题的答案执行不同的操作。既然已知QuestionList中包含三个问题，问题可以这样来问：“currentQuestionIndex是否＞3？”如果是，将currentQuestionIndex设回1，这样就回到了第一道题。表8-5中列出了所需的块。
 
 表8-5 检查索引值是否到了列表的结尾所需的块
-块的类型	所在抽屉	作用
-if	Control	判断用户是否正在做最后一题
-=	Math	检查currentQuestionIndex的值是否为3
-get global currentQuestionIndex	Variables	放入“=”左边的插槽
-数字3	Math	放入“=”右边的插槽
-set global currentQuestionIndex to	Variables	设为1来转回到第一道题
-数字1	Math	设置索引值为1
+
+|块的类型|	所在抽屉|	作用|
+|:---|:----|:-----|
+|if|	Control|	判断用户是否正在做最后一题|
+|=	|Math	|检查currentQuestionIndex的值是否为3|
+|get global currentQuestionIndex	|Variables	|放入“=”左边的插槽|
+|数字3|	Math	|放入“=”右边的插槽|
+|set global currentQuestionIndex to|	Variables|	设为1来转回到第一道题|
+|数字1|	Math|	设置索引值为1|
 
 测试：单击手机上的“下一题”按钮，会照常出现第二题“哪位总统在1979年实现中美建交？”，继续点击“下一题”，将显示第三题。下面是你真正想测的：如果再次点击，将出现第一题（“哪位总统在大萧条时期实施了‘新政’？”）。
 
@@ -166,9 +171,12 @@ set global currentQuestionIndex to	Variables	设为1来转回到第一道题
 问题出在“最后一题”的判断条件太具体：currentQuestionIndex＞3。如果把3改为4，程序正常了，但问题是，每次增减问题和答案时，都要记着修改判断条件。计算机程序中的这种强相关性最容易导致错误，特别是当程序变得复杂时。好的对策是让程序的设计与列表中的问题数量无关。这种通用性，对于程序员来说，当你想创建其他专题的定制测验时，可以让程序的移植更加容易。尤其是在处理动态列表时，这样做是必须的，例如，测验中允许用户添加新问题（见第10章）。一个通用性好的程序不该与3这样的具体数字相关联，因为这只对那些有三个问题的测验有效。对currentQuestionIndex的判断条件应该是QuestionList列表的长度（项数），而不是具体数字。当条件更具通用性时，即使是添加或删除QuestionList中的项，程序也能正常运行。现在修改NextButton.Click事件处理程序，替换掉具体数字3。表8-6中列出了所需要的块。
 
 表8-6 检查列表长度所需的块
-块的类型	所在抽屉	作用
-length of list	Lists	询问列表QuestionList中有多少个列表项
-get global QuestionList	Variables	插入length of list块的list插槽中
+
+|块的类型|	所在抽屉|	作用|
+|:---|:----|:-----|
+|length of list	|Lists	|询问列表QuestionList中有多少个列表项|
+|get global QuestionList|	Variables	|插入length of list块的list插槽中|
+
 ## 块的作用
 
 If块中将currentQuestionIndex值与QuestionList的列表长度进行比较，如图8-12所示。如果currentQuestionIndex为5，而QuestionList的长度为4，则currentQuestionIndex将被重新设置为1。值得注意的是：由于程序块不再与3或任何具体数字相关联，因此无论列表中有多少项，程序都将正常运行。
@@ -187,11 +195,13 @@ If块中将currentQuestionIndex值与QuestionList的列表长度进行比较，�
 下面来修改NextButton.Click事件处理程序，以便图片可以随问题索引的改变而改变。Image组件的Picture属性用于指定要显示的图片。表8-7中列出了修改NextButton.Click所需的块。
 
 表8-7 显示与问题相匹配的图片所需的块
-块的类型	所在抽屉	作用
-set Image1.Picture to	Image1	改变图片
-select list Item	Lists	选择一个与当前问题相匹配的图片
-global PictureList	Variables	从列表中选择一个文件名
-get global currentQuestionIndex	Variables	选择第currentQuestionIndex项
+
+|块的类型|	所在抽屉|	作用|
+|set Image1.Picture to	|Image1	|改变图片|
+|select list Item	|Lists|	选择一个与当前问题相匹配的图片|
+|global PictureList|	Variables|	从列表中选择一个文件名|
+|get global currentQuestionIndex|	Variables	|选择第currentQuestionIndex项|
+
 ## 块的作用
 
 rrentQuestionIndex同时充当QuestionList和PictureList两个列表的索引，这要求正确设置各个列表，如，第一题对应第一个答案及第一张图，第二题对应第二个答案及第二张图，依此类推，这样一个索引值可用于三个列表，如图8-12所示。举例说明：第一张图roosChurch.gif是罗斯福总统的图（与英国首相丘吉尔在一起），而“罗斯福”是第一个问题的答案。
@@ -206,18 +216,21 @@ rrentQuestionIndex同时充当QuestionList和PictureList两个列表的索引，
 现在应用已经可以遍历所有的试题及答案（及匹配答案的图片），这是列表应用的极好案例。但真实的测验要对用户的回答判断正误。下面添加一些块来告诉用户他的回答是否正确。用户在AnswerText中输入答案，并点击AnswerButton提交答案；程序用Ifelse块将用户输入与标准答案作比较，并用RightWrongLabel显示比较结果。表8-8列出了程序中用到的块。
 
 表8-8 用于显示答案是否正确的块
-块的类型	所在抽屉	作用
-AnswerButton.Click	AnswerButton	点击AnswerButton按钮时触发该事件
-ifelse	Control	如果回答正确，做一件事，否则做另一件事
-=	Math	判断回答是否正确
-AnswerText.Text	AnswerText	包含了用户的回答
-select list Item	Lists	从AnswerList列表中选择当前问题的答案
-get global AnswerList	Variables	答案的列表
-get global currantQuestionIndex	Variables	当前用户正在回答的问题的索引值
-set RightWrongLabel.Text to	RightWrongLabel	显示回答是否正确
-“正确”	Text	回答正确时显示
-set RightWrongLabel.Text to	RightWrongLabel	显示回答是否正确
-“不正确”	Text	回答错误时显示
+
+|块的类型|	所在抽屉|	作用|
+|:---|:----|:-----|
+|AnswerButton.Click|	AnswerButton	|点击AnswerButton按钮时触发该事件|
+|ifelse	|Control	|如果回答正确，做一件事，否则做另一件事|
+|=	|Math|	判断回答是否正确|
+|AnswerText.Text|	AnswerText	|包含了用户的回答|
+|select list Item	|Lists	|从AnswerList列表中选择当前问题的答案|
+|get global AnswerList|	Variables|	答案的列表|
+|get global currantQuestionIndex	|Variables	|当前用户正在回答的问题的索引值|
+|set RightWrongLabel.Text to	|RightWrongLabel	|显示回答是否正确|
+|“正确”	|Text	|回答正确时显示|
+|set RightWrongLabel.Text to|	RightWrongLabel|	显示回答是否正确|
+|“不正确”|	Text	|回答错误时显示|
+
 块的作用
 
 在图8-14中，Ifelse块用来检验用户的输入（AnswerText.Text）是否等于AnswerList中的第currentQuestionIndex项。如果currentQuestionIndex=1，程序将用户的回答与AnswerList中的第一项“罗斯福”作对比，同样，如果currentQuestionIndex=2，则与AnswerList中的第二项“卡特”作对比，等等。如果对比结果相同，则执行then块，即RightWrongLabel显示“正确！”；如果对比结果不同，执行else块，即RightWrongLabel显示“不正确！”。
@@ -232,11 +245,14 @@ set RightWrongLabel.Text to	RightWrongLabel	显示回答是否正确
 应用运行正常，但你会看到，当单击“下一题”时，虽然图片和问题都切换到下一题，但“正确！”或“不正确！”的文本以及前一题中输入的回答仍然显示在屏幕上，如图8-14所示。尽管这一点无伤大雅，但用户肯定会发现这类的界面问题。将RightWrongLabel及AnswerText清空，需要在NextButton.Click事件处理程序中添加几个块，表8-9列出了所需的块。
 
 表8-9 清除RightWrongLabel及AnswerText的块
-块的类型	所在抽屉	作用
-set RightWrongLabel.Text to	RightWrongLabel	需要清空内容的label
-“”	Text	当用户点击“下一题”时，删除对上一题回答的反馈
-set AnswerText.Text to	AnswerText	用户对上一题的回答
-“”	Text	当用户点击“下一题”时，删除对上一题的回答
+
+|块的类型|	所在抽屉|	作用|
+|:---|:----|:-----|
+|set RightWrongLabel.Text to	|RightWrongLabel	|需要清空内容的label|
+|“”	|Text	|当用户点击“下一题”时，删除对上一题回答的反馈|
+|set AnswerText.Text to|	AnswerText	|用户对上一题的回答|
+|“”	|Text	|当用户点击“下一题”时，删除对上一题的回答|
+
 ## 块的作用
 
 用户单击“下一题”时，图8-15中的前两行用于清空RightWrongLabel和AnswerText。
