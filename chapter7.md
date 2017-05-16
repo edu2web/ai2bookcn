@@ -32,30 +32,32 @@
 跟随表7-1，逐个拖出组件，并做相应设置，创建如图7-1所示的用户界面。
 
 表7-1 应用中的所有组件
-组件类型	面板中分组	命名	作用
-Label	User Interface	CurrentHeaderLabel	显示标题“当前位置”
-HorizontalArrangement	Screen Arrangement	CurrentAddrArrangement	放置地址信息
-Label	User Interface	CurrentAddressLabel	显示“地址：”
-Label	User Interface	CurrentAddressDataLabel	显示动态数据：当前地址
-HorizontalArrangement	Screen Arrangement	CurrentGPSArrangement	安置GPS信息
-Label	User Interface	GPSLabel	显示“GPS：”
-Label	User Interface	CurrentLatLabel	显示动态数据：当前纬度
-Label	User Interface	CommaLabel	显示“，”
-Label	ser Interface	CurrentLongLabel	显示动态数据：当前经度
-Button	User Interface	RememberButton	点击记录当前位置
-Label	User Interface	RememberedAddressTitleLabel	显示“已记录的地点”
-HorizontalArrangement	Screen Arrangement	RememberAddrArrangement	安置已保存的GPS信息
-Label	User Interface	RememberedAddressLabel	显示“地址：”
-Label	User Interface	RememberedAddressDataLabel	显示动态数据：已记录的地址
-HorizontalArrangement	Screen Arrangement	RememberGPSArrangement	安置已记录的GPS信息
-Label	User Interface	RememberedGPSlabel	显示“GPS：”
-Label	User Interface	RememberedLatLabel	显示动态数据：已记录的纬度
-Label	User Interface	Comma2Label	显示“，”
-Label	User Interface	RememberedLongLabel	显示动态数据：已记录的经度
-Button	User Interface	DirectionsButton	点击来显示地图
-LocationSensor	Sensors	LocationSensor1	感知GPS信息
-TinyDB	Storage	TinyDB1	永久保存已记录的位置信息
-ActivityStarter	Connectivity	ActivityStarter1	打开地图
+
+|组件类型|面板中分组|	命名	|作用|
+|:---|:----|:-----|:------|
+|Label	|User Interface	|CurrentHeaderLabel|	显示标题“当前位置”|
+|HorizontalArrangement	|Screen Arrangement	|CurrentAddrArrangement	|放置地址信息|
+|Label	|User Interface	|CurrentAddressLabel	|显示“地址：”|
+|Label	|User Interface	|CurrentAddressDataLabel	|显示动态数据：当前地址|
+|HorizontalArrangement|	Screen Arrangement	|CurrentGPSArrangement	|安置GPS信息|
+|Label |User Interface |GPSLabel |显示“GPS：” |
+|Label	|User Interface	|CurrentLatLabel	|显示动态数据：当前纬度|
+|Label	|User Interface|	CommaLabel|	显示“，”|
+|Label	|ser Interface	|CurrentLongLabel	|显示动态数据：当前经度|
+|Button	|User Interface	|RememberButton	|点击记录当前位置|
+|Label	|User Interface|	RememberedAddressTitleLabel|	显示“已记录的地点”|
+|HorizontalArrangement	|Screen Arrangement	|RememberAddrArrangement|	安置已保存的GPS信息|
+|Label	|User Interface|	RememberedAddressLabel	|显示“地址：”|
+|Label|	User Interface	|RememberedAddressDataLabel	|显示动态数据：已记录的地址|
+|HorizontalArrangement	|Screen Arrangement|	RememberGPSArrangement	|安置已记录的GPS信息|
+|Label|	User Interface	|RememberedGPSlabel	|显示“GPS：”|
+|Label|	User Interface|	RememberedLatLabel|	显示动态数据：已记录的纬度|
+|Label	|User Interface|	RememberedLongLabel	|显示动态数据：已记录的经度|
+|Button	|User Interface| DirectionsButton	|点击来显示地图|
+|LocationSensor	|Sensors|	LocationSensor1|	感知GPS信息|
+|TinyDB	|Storage	TinyDB1|	|永久保存已记录的位置信息|
+|ActivityStarter|	Connectivity	|ActivityStarter1|	打开地图|
+
 用以下方式设置组件属性：
 
 * 设置显示静态文本的Label的Text属性为固定文本，参照表7-1；
@@ -64,10 +66,12 @@ ActivityStarter	Connectivity	ActivityStarter1	打开地图
 * 取消勾选RememberButton和DirectionsButton的Enabled属性（设置为不可用）；
 * 设置ActivityStarter属性（表7-2），以便ActivityStarter.startActivity可以打开谷歌地图。（图7-1中ActivityStarter的属性显示不完整。）表7-2中未列出的属性可以留空。
 表7-2 打开谷歌地图所要设定的ActivityStarter属性
-属性	值
-Action	android.intent.action.VIEW
-ActivityClass	com.google.android.maps.MapsActivity
-ActivityPackage	com.google.android.apps.maps
+
+|属性	|值|
+|:---|:----|
+|Action|	android.intent.action.VIEW|
+|ActivityClass	|com.google.android.maps.MapsActivity|
+|ActivityPackage	|com.google.android.apps.maps|
 
 提示：ActivityStarter组件可在应用中打开安装在设备上的任何其他Android应用。要打开地图，表7-2中的属性必须一字不差地输入；要打开其他应用，请参阅http://appinventor.googlelabs.com/learn/reference/other/activitystarter.html 中的App Inventor文档。
 ## 为组件添加行为
@@ -83,16 +87,19 @@ ActivityPackage	com.google.android.apps.maps
 两种情况会触发LocationSensor.LocationChanged事件，（1）传感器首次读取位置信息时；（2）设备的位置变化，传感器读数更新时。首次读数有时仅需几秒钟，但如果GPS卫星信号受到屏蔽，会一直没有读数（也与设备的设置有关）。有关GPS和LocationSensor的更多信息，请参见第23章。 在读取到位置信息时，程序要将数据写到相应的Label中。表7-3列出了所有相关的块。
 
 表7-3 读取到位置信息时，用户界面显示这些信息所需要的块
-块的类型	所在抽屉	作用
-LocationSensor1.LocationChanged	LocationSensor	当手机收到新的GPS读数时，触发该事件
-set CurrentAddressDataLabel.Text to	CurrentAddressDataLabel	将当前地址的新数据写入label
-LocationSensor1.CurrentAddress	LocationSensor	该属性保存了街道地址信息
-set CurrentLatLabel.Text to	CurrentLatLabel	将纬度信息写入相应的label
-get latitude	Variables	插入set CurrentLatLabel.Text to块的插槽
-set CurrentLongLabel.Text to	CurrentLongLabel	将经度信息写入相应的label
-get longitude	Variables	插入set CurrentLongLabel.Text to块的插槽
-set RememberButton.Enabled to	RememberButton	设置“记住我现在的位置”按钮属性
-true	Logic	插入set RememberButton.Enabled to插槽
+
+|块的类型	|所在抽屉|	作用|
+|:---|:----|:-----|
+|LocationSensor1.LocationChanged|	LocationSensor	|当手机收到新的GPS读数时，触发该事件|
+|set CurrentAddressDataLabel.Text to|	CurrentAddressDataLabel	|将当前地址的新数据写入label|
+|LocationSensor1.CurrentAddress|	LocationSensor	|该属性保存了街道地址信息|
+|set CurrentLatLabel.Text to	|CurrentLatLabel	|将纬度信息写入相应的label|
+|get latitude	|Variables|	插入set CurrentLatLabel.Text to块的插槽|
+|set CurrentLongLabel.Text to|	CurrentLongLabel	|将经度信息写入相应的label|
+|get longitude|	Variables|	插入set CurrentLongLabel.Text to块的插槽|
+|set RememberButton.Enabled to	|RememberButton	|设置“记住我现在的位置”按钮属性|
+|true	|Logic	|插入set RememberButton.Enabled to插槽|
+
 ## 块的作用
 
 
@@ -110,16 +117,19 @@ true	Logic	插入set RememberButton.Enabled to插槽
 当用户点击RememberButton时，当前位置信息被写入“已记录的地点”下方的label中。表7-4显示了实现这一功能所需要的块。
 
 表7-4 记录并显示当前位置所需要的块
-块的类型	所在抽屉	作用
-RememberButton.Click	RememberButton	用户点击按钮时触发该事件
-set RememberedAddressDataLabel.Text to	RememberedAddressDataLabel	将传感器获得的地址信息写入“已记录”label中
-LocationSensor1.CurrentAddress	LocationSensor	该属性保存了街道地址信息
-set RememberedLatLabel.Text to	RememberedLatLabel	将纬度信息写入“已记录”label中
-LocationSensor1.Latitude	LocationSensor	该属性保存了纬度信息
-set RememberedLongLabel.Text to	RememberedLongLabel	将经度信息写入“已记录”label中
-LocationSensor1.Longitude	LocationSensor	该属性保存了经度信息
-set DirectionsButton.Enabled to	DirectionsButton	设置DirectionsButton的Enabled属性
-true	Logic	设置DirectionsButton的Enabled属性为真
+
+|块的类型	|所在抽屉|	作用|
+|:---|:----|:-----|
+|RememberButton.Click|	RememberButton	|用户点击按钮时触发该事件|
+|set RememberedAddressDataLabel.Text to	|RememberedAddressDataLabel	|将传感器获得的地址信息写入“已记录”label中
+|LocationSensor1.CurrentAddress|	LocationSensor|	该属性保存了街道地址信息|
+|set RememberedLatLabel.Text to	|RememberedLatLabel|	将纬度信息写入“已记录”label中|
+|LocationSensor1.Latitude	|LocationSensor|	该属性保存了纬度信息|
+|set RememberedLongLabel.Text to	|RememberedLongLabel	|将经度信息写入“已记录”label中|
+|LocationSensor1.Longitude	|LocationSensor|	该属性保存了经度信息|
+|set DirectionsButton.Enabled to|	DirectionsButton|	设置DirectionsButton的Enabled属性|
+|true|	Logic|	设置DirectionsButton的Enabled属性为真|
+
 ## 块的作用
 
 当用户点击RememberButton时，当前位置信息将写入“已记录”label中，如图7-3所示。 注意到DirectionsButton已可用，这会有点儿小麻烦，因为如果用户立即点击DirectionsButton，记住的位置也是当前位置，因而地图中不会提供方向有关的信息。但是，人们似乎不会这么做，当用户移动位置时（例如步行到演唱会），则当前位置将偏离已记录的位置。
@@ -140,19 +150,21 @@ true	Logic	设置DirectionsButton的Enabled属性为真
 用户点击DirectionsButton时，事件处理程序生成一个地图URL，然后调用ActivityStarter打开地图应用并加载地图，如图7-4所示，用join创建的URL发送给地图应用。 最终的URL包含了地图域名（http://maps.google.com/maps）以及两个URL参数：saddr与daddr，用来指定方向的起点位置及终点位置。在本应用中，saddr被设定为当前位置的纬度和经度，而daddr被设定为已记录的停车位置的纬度和经度。
 
 表7-5 打开一张带有方向指示的地图所需要的块
-块的类型	所在抽屉	作用
-DirectionsButton.Click	DirectionsButton	用户点击”指示方向”按钮触发该事件
-set ActivityStarter1.DataUri to	ActivityStarter1	设置要打开地图的URL
-join	Text	将URL的各组成部分连接起来
-“http://maps.google.com/maps?saddr=”	Text	URL中固定的部分，后面接起点经纬度
-CurrentLatLabel.Text	CurrentLatLabel	当前位置的纬度值
-“,”	Text	放在经纬度值之间的逗号
-CurrentLongLabel.Text	CurrentLongLabel	当前位置的经度值
-“&daddr=”	Text	URL中的第二个参数，后面接终点经纬度
-RememberedLatLabel.Text	RememberedLatLabel	已记录位置的纬度
-“,”	Text	放在经纬度值之间的逗号
-RememberedLongLabel.Text	RememberedLongLabel	已记录位置的经度
-ActivityStarter1.StartActivity	ActivityStarter1	打开地图
+
+|块的类型	|所在抽屉|	作用|
+|:---|:----|:-----|
+|DirectionsButton.Click|	DirectionsButton|	用户点击”指示方向”按钮触发该事件|
+|set ActivityStarter1.DataUri to|	ActivityStarter1	|设置要打开地图的URL|
+|join|	Text	|将URL的各组成部分连接起来|
+|“http://maps.google.com/maps?saddr=”|	Text|	URL中固定的部分，后面接起点经纬度|
+|CurrentLatLabel.Text	|CurrentLatLabel|	当前位置的纬度值|
+|“,”	|Text|	放在经纬度值之间的逗号|
+|CurrentLongLabel.Text	|CurrentLongLabel	|当前位置的经度值|
+|“&daddr=”	|Text	|URL中的第二个参数，后面接终点经纬度|
+|RememberedLatLabel.Text|	RememberedLatLabel	|已记录位置的纬度|
+|“,”|	Text	|放在经纬度值之间的逗号|
+|RememberedLongLabel.Text|	RememberedLongLabel|	已记录位置的经度|
+|ActivityStarter1.StartActivity	|ActivityStarter1	|打开地图|
 
 图7-4 生成一个URL，用来打开地图并指示方向
 
@@ -166,14 +178,17 @@ ActivityStarter1.StartActivity	ActivityStarter1	打开地图
 从修改RememberButton.Click事件处理程序开始，来存储这些要被“记住”的信息。存储纬度、经度和地址三组信息，需要三次调用TinyDB.StoreValue。表7-6列出了所要补充的块。
 
 表7-6 永久保存位置信息所需要的块
-块的类型	所在抽屉	作用
-TinyDB1.StoreValue(3)	TinyDB1	将数据保存在设备数据库中
-“address”	Text	插入TinyDB1.StoreValue的tag插槽中
-LocationSensor1.CurrentAddress	LocationSensor1	插入TinyDB1.StoreValue的value插槽中，永久保存地址信息
-“lat”	Text	插入第二个TinyDB1.StoreValue的tag插槽中
-LocationSensor.CurrentLatitude	LocationSensor	插入第二个TinyDB1.StoreValue的value插槽中，永久保存纬度信息
-“long”	Text	插入第三个TinyDB1.StoreValue的tag插槽中
-LocationSensor.CurrentLongitude	LocationSensor	插入第三个TinyDB1.StoreValue的value插槽中，永久保存经度信息
+
+|块的类型	|所在抽屉|	作用|
+|:---|:----|:-----|
+|TinyDB1.StoreValue(3)	|TinyDB1	|将数据保存在设备数据库中|
+|“address”|	Text	|插入TinyDB1.StoreValue的tag插槽中|
+|LocationSensor1.CurrentAddress|	LocationSensor1|	插入TinyDB1.StoreValue的value插槽中，永久保存地址信息|
+|“lat”	|Text	|插入第二个TinyDB1.StoreValue的tag插槽中|
+|LocationSensor.CurrentLatitude|	LocationSensor	|插入第二个TinyDB1.StoreValue的value插槽中，永久保存纬度信息|
+|“long”	|Text|	插入第三个TinyDB1.StoreValue的tag插槽中|
+|LocationSensor.CurrentLongitude|	LocationSensor|	插入第三个TinyDB1.StoreValue的value插槽中，永久保存经度信息|
+
 ## 块的作用
 
 如图7-5所示，TinyDB1.StoreValue将LocationSensor属性中的位置信息保存到数据库中。你该记得在“开车不发短信”中，StoreValue函数有两个参数，tag与value，tag充当已存储数据的标识，value是你实际想保存的数据，即本例中的LocationSensor数据。
