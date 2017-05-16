@@ -34,14 +34,17 @@
 首先将下载的图片加载到项目中：单击Media区域的Upload File按钮，选择一个文件（如roosChurch.gif），其他图片也是如此。然后添加表8-1中列出的组件。
 
 表8-1 “总统测验”应用所需组件
-组件类型	面板中分组	命名	作用
-Image	User Interface	Image1	与问题一同显示的图片
-Label	User Interface	QuestionLabel	显示正在回答的问题
-HorizontalArrangement	Layout	HorizontalArrangement1	放置答案输入框及“提交”按钮
-TextBox	User Interface	AnswerText	用户在此输入答案
-Button	User Interface	AnswerButton	用户点击之后提交答案
-Label	User Interface	RightWrongLabel	显示“正确”或“不正确”的反馈
-Button	User Interface	NextButton	用户点击进入下一题
+
+|组件类型|面板中分组|	命名	|作用|
+|:---|:----|:-----|:------|
+|Image|	User Interface	|Image1	|与问题一同显示的图片|
+|Label	|User Interface|	QuestionLabel|	显示正在回答的问题|
+|HorizontalArrangement|	Layout	|HorizontalArrangement1|	放置答案输入框及“提交”按钮|
+|TextBox	|User Interface	|AnswerText	|用户在此输入答案|
+|Button	|User Interface	|AnswerButton	|用户点击之后提交答案|
+|Label|	User Interface	|RightWrongLabel	|显示“正确”或“不正确”的反馈|
+|Button	|User Interface	|NextButton	|用户点击进入下一题|
+
 按照下面提示设置组件属性：
 
 Image1：Picture为roosChurch.gif（最先出现）；Width为“Fill parent”，Height为200；
@@ -62,13 +65,16 @@ RightWrongLabel：Text为空。
 首先按照表8-2的提示，定义两个列表变量：QuestionList用来保存问题，AnswerList用来保存答案。图8-3显示在块编辑器中创建的两个列表。
 
 表8-2 用于保存问题和答案的列表变量
-块的类型	所在抽屉	作用
-Initialize global QuestionList to	Variables	保存问题的列表（更名为QuestionList）
-Initialize global AnswerList to	Variables	保存答案的列表（更名为AnswerList）
-make a list	Lists	为QuestionList插入列表项
-问题内容（三个）	Text	问题
-make a list	Lists	为AnswerList插入列表项
-答案内容（三个）	Text	答案
+
+|块的类型	|所在抽屉|	作用|
+|:---|:----|:-----|
+|Initialize global QuestionList to	|Variables	|保存问题的列表（更名为QuestionList）|
+|Initialize global AnswerList to|	Variables|	保存答案的列表（更名为AnswerList）|
+|make a list	|Lists	|为QuestionList插入列表项|
+|问题内容（三个）	|Text	问题|
+|make a list	|Lists|	为AnswerList插入列表项|
+|答案内容（三个）	|Text|	答案|
+
 
 图8-3 问题及答案列表
 ## 定义索引变量
@@ -76,9 +82,11 @@ make a list	Lists	为AnswerList插入列表项
 在整个测试过程中，每次用户点击“下一题”按钮，都要跟踪用户正在回答的问题。定义变量currentQuestionIndex作为QuestionList和AnswerList的索引值。表8-3列出了所需的块，图8-4显示了变量的定义。
 
 表8-3 创建索引
-块的类型	所在抽屉	作用
-Initialize global currentQuestionIndex to	Variables	保存当前问题（与答案）的索引（位置）
-数字1	Math	将currentQuestionIndex的初始值设为1（第一题）
+
+|块的类型	|所在抽屉|	作用|
+|:---|:----|:-----|
+|Initialize global currentQuestionIndex to	|Variables	|保存当前问题（与答案）的索引（位置）|
+|数字1	|Math|	将currentQuestionIndex的初始值设为1（第一题）|
 
 图8-4 索引变量的初始值为1
 ## 显示第一个问题
