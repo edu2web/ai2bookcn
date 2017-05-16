@@ -30,16 +30,18 @@
 在应用中，使用一个Canvas组件作为三个ImageSprite组件的活动场地，三个ImageSprite组件分别代表瓢虫、蚜虫和青蛙，此外，还要为青蛙配一个声音组件。OrientationSensor（方向传感器）通过测量设备的倾斜来移动瓢虫，Clock组件用来改变蚜虫的运动方向。另有一个显示瓢虫能量水平的Canvas组件；一个重新启动按钮，当瓢虫饿死或被吃掉时，用来重新启动游戏。表5-1提供了本应用中使用的全部组件列表。
 
 表5-1 瓢虫快跑游戏中的所有组件
-组件类型	面板中分组	命名	作用
-Canvas	Drawing and Amination	FieldCanvas	运动场地
-ImageSprite	Drawing and Amination	Ladybug	用户控制的角色
-OrientationSensor	Sensor	OrientationSensor1	测试手机的倾斜，控制瓢虫移动
-Clock	User Interface	Clock1	决定何时改变Imagesprite的方向
-ImageSprite	Drawing and Amination	Aphid	蚜虫：瓢虫的捕食对象
-ImageSprite	Drawing and Amination	Frog	青蛙：瓢虫的捕食者
-Canvas	Drawing and Amination	EnergyCanvas	显示瓢虫的能量水平
-Button	User Interface	RestartButton	重启游戏
-Sound	Media	Sound1	青蛙吃瓢虫时发出的声音
+
+|组件类型|面板中分组|	命名	|作用|
+|:---|:----|:-----|:------|
+|Canvas	|Drawing and Amination	|FieldCanvas|	运动场地|
+|ImageSprite|	Drawing and Amination|	Ladybug	|用户控制的角色|
+|OrientationSensor	|Sensor|	OrientationSensor1	|测试手机的倾斜，控制瓢虫移动|
+|Clock|	User Interface	|Clock1	|决定何时改变Imagesprite的方向|
+|ImageSprite	|Drawing and Amination|	Aphid|	蚜虫：瓢虫的捕食对象|
+|ImageSprite	|Drawing and Amination	|Frog	|青蛙：瓢虫的捕食者|
+|Canvas|	Drawing and Amination|	EnergyCanvas|	显示瓢虫的能量水平|
+|Button	|User Interface|	RestartButton|	重启游戏|
+|Sound	|Media|	Sound1|	青蛙吃瓢虫时发出的声音|
 
 ## 准备开始
 
