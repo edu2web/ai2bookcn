@@ -3,6 +3,7 @@
 
 在前几章中，你已经了解了一些编程的基本概念。现在，准备好面对更大的挑战吧。你会发现，无论是编程技巧，还是抽象思维，这一章都要求你有一个概念性的飞跃。特别需要强调的是，本章将使用两个列表变量来存储数据——应用中的问题和答案，使用索引变量来跟踪用户正在回答的题目。在本章结束时，对于创建测验类应用和其他需要使用列表的应用，你已经掌握了必要的知识。
 
+![](./images/0-15.png)
 
 本章假设你已经熟悉了App Inventor的基础知识：使用组件设计器构建用户界面，用块编辑器来定义事件处理程序并为组件添加行为。如果你还不熟悉，在继续学习之前，请复习前面几章。
 
@@ -10,6 +11,7 @@
 
 ## 学习要点
 
+![](./images/1-17.png)
 
 图8-1 “总统测验”在手机中
 如图8-1所示，本章覆盖以下内容：
@@ -29,6 +31,7 @@
 
 “总统测验”应用的界面很简单：显示问题并允许用户来回答。图8-2显示了应用在组件设计器中的截图，按图来创建组件。
 
+![](./images/2-15.png)
 
 图8-2 组件设计器中的“总统测验”
 首先将下载的图片加载到项目中：单击Media区域的Upload File按钮，选择一个文件（如roosChurch.gif），其他图片也是如此。然后添加表8-1中列出的组件。
@@ -75,6 +78,7 @@ RightWrongLabel：Text为空。
 |make a list	|Lists|	为AnswerList插入列表项|
 |答案内容（三个）	|Text|	答案|
 
+![](./images/3-15.png)
 
 图8-3 问题及答案列表
 ## 定义索引变量
@@ -87,6 +91,8 @@ RightWrongLabel：Text为空。
 |:---|:----|:-----|
 |Initialize global currentQuestionIndex to	|Variables	|保存当前问题（与答案）的索引（位置）|
 |数字1	|Math|	将currentQuestionIndex的初始值设为1（第一题）|
+
+![](./images/4-16.png)
 
 图8-4 索引变量的初始值为1
 ## 显示第一个问题
@@ -115,8 +121,11 @@ select list item块用来选择列表中的项，使用中要求指定list（列
 
 应用启动时触发Screen1.Initialize事件。如图8-5所示，变量QuestionList中的第一项被选中，并被写入QuestionLabel.Text。因此，应用启动时，用户会看到第一道题。
 
+![](./images/5-16.png)
 
 图8-5 应用启动时选择并显示第一道题
+
+![](./images/test-5.png)
 
 测试：连接装有AI伴侣的设备，或点击“connectEmulator”打开Android模拟器。当应用启动后，你是否看到QuestionList中的第一道题：“哪位总统在大萧条时期实施了’新政’？”
 
@@ -124,17 +133,20 @@ select list item块用来选择列表中的项，使用中要求指定list（列
 
 现在为“下一题”按钮的行为编程。之前定义的currentQuestionIndex用来记住用户正在回答的问题，现在设定当用户单击“下一题”时，为currentQuestionIndex加1（即，从1变为2，或从2变为3，依此类推），并根据currentQuestionIndex的值来选择并显示新的问题。挑战一下你自己，看看是否可以自己搭建这些块。完成之后，与图8-6进行对照。
 
+![](./images/6-16.png)
 
 图8-6 显示下一题
 ## 块的作用
 
 第一行的块让变量currentQuestionIndex递增。如果当前值为1则加到2；如果是2则加到3，以此类推。一旦currentQuestionIndex值改变，应用将以此来选择新的问题并显示。首次单击“下一题”时，currentQuestionIndex从1变为2，应用将选择并显示QuestionList中的第二道题：“哪位总统在1979年实现中美建交？”；第二次单击“下一题”时，currentQuestionIndex从2变为3，应用将选择并显示QuestionList中的第三道题：“哪位总统因水门事件而辞职？”
 
+![](./images/note-3.png)
 
 提示：花一分钟的时间来比较一下NextButton.Click与Screen.Initialize两个事件处理程序的差别。在Screen.Initialize中，用具体数字1来选择列表项；而在NextButton.Click中，用索引变量currentQuestionindex来选择列表项，即选择第currentQuestionindex项，而非第一或第二第三项，因而点击“下一题”将选中不同的项。这是索引最常见的用法——增加索引值来找到并显示列表项。
 
 问题是，索引的每次递增，都会转到下一题，那么当测验到最后一题时，怎么办呢？即：当currentQuestionIndex=3时点击“下一题”，currentQuestionIndex将从3变为4，应用将从问题列表中选择第currentQuestionIndex项，即第4项，而列表QuestionList中只有3项，此时Android设备将不知所措并强行退出应用。那么应用如何知道已经测验到最后一题了呢？
 
+![](./images/test-5.png)
 
 测试：测试“下一题”按钮，看看应用运行是否正常。在手机上按“下一题”按钮，是否显示第二题“哪位总统在1979年实现中美建交？”？应该是的；再按“下一题”，应该出现第三题。但如果再次点击，就会看到错误提示：“Attempting to get item 4 of a list of length 3.（试图从只有3个项的列表中获取第4项。）”这就是程序的bug！知道原因吗？在继续阅读之前试试看自己解决它。
 
@@ -151,20 +163,27 @@ select list item块用来选择列表中的项，使用中要求指定list（列
 |set global currentQuestionIndex to|	Variables|	设为1来转回到第一道题|
 |数字1|	Math|	设置索引值为1|
 
+![](./images/test-5.png)
+
 测试：单击手机上的“下一题”按钮，会照常出现第二题“哪位总统在1979年实现中美建交？”，继续点击“下一题”，将显示第三题。下面是你真正想测的：如果再次点击，将出现第一题（“哪位总统在大萧条时期实施了‘新政’？”）。
 
+![](./images/7-15.png)
 
 图8-7 检查索引值递增
 单击“下一题”时，索引照旧会递增。但程序会检查是否currentQuestionIndex＞3（问题的数量）。如果大于3，则将currentQuestionIndex重新设置为1，并显示第一题；如果≤3，则不执行if块内的程序，并照常显示当前问题。
 
+![](./images/8-14.png)
 
 图8-8 检查测验是否到了最后一题（第三题）
 ## 让测验易于修改
 
 如果NextButton.Click中的块能够正常运行，恭喜你，你正在成为一名合格的程序员！但是，如果想在测验中添加新题目（及答案），该怎么办？这些块还能正常运行吗？为了验证这一点，先在QuestionList中添加第四道题，并在AnswerList中添加第四个答案，如图8-9。
 
+![](./images/9-13.png)
 
 图8-9 向两个列表中分别添加一项
+
+![](./images/test-5.png)
 
 测试：多次单击“下一题”按钮，你发现无论点击多少次，第四题始终不出现。知道问题所在吗？在继续阅读之前，尝试做些修改，以便让第四题出现。
 
@@ -181,8 +200,11 @@ select list item块用来选择列表中的项，使用中要求指定list（列
 
 If块中将currentQuestionIndex值与QuestionList的列表长度进行比较，如图8-12所示。如果currentQuestionIndex为5，而QuestionList的长度为4，则currentQuestionIndex将被重新设置为1。值得注意的是：由于程序块不再与3或任何具体数字相关联，因此无论列表中有多少项，程序都将正常运行。
 
+![](./images/10-13.png)
 
 图8-10 采取更加通用的方式检查列表的结尾
+
+![](./images/test-5.png)
 
 测试：当单击“下一题”按钮时，程序是否在四个问题间循环？在第四题后是否又回到第一题？
 
@@ -190,6 +212,7 @@ If块中将currentQuestionIndex值与QuestionList的列表长度进行比较，�
 
 现在程序已经可以遍历所有的问题（而且代码更加聪明灵活，也更抽象），下面来设置图片。眼下无论显示什么问题，图片都是同一个，我们希望当用户单击“下一题”时，图片与问题相匹配。此前在Media中载入了四张图片，现在用图片的文件名来创建第三个列表PictureList。然后修改NextButton.Click事件处理程序，同时切换问题与图片。（想到currentQuestionIndex就说明你已经开窍了！）首先创建列表PictureList，用图片文件名初始化列表，要保证列表中的文件名与先前加载的图片文件名完全相同。图8-11显示了PictureList块的样子。
 
+![](./images/11-12.png)
 
 图8-11 PictureList中用图片文件名来充当列表项
 下面来修改NextButton.Click事件处理程序，以便图片可以随问题索引的改变而改变。Image组件的Picture属性用于指定要显示的图片。表8-7中列出了修改NextButton.Click所需的块。
@@ -206,8 +229,11 @@ If块中将currentQuestionIndex值与QuestionList的列表长度进行比较，�
 
 rrentQuestionIndex同时充当QuestionList和PictureList两个列表的索引，这要求正确设置各个列表，如，第一题对应第一个答案及第一张图，第二题对应第二个答案及第二张图，依此类推，这样一个索引值可用于三个列表，如图8-12所示。举例说明：第一张图roosChurch.gif是罗斯福总统的图（与英国首相丘吉尔在一起），而“罗斯福”是第一个问题的答案。
 
+![](./images/12-9.png)
 
 图8-12 每次选择与问题匹配的第currentQuestionIndex张图片
+
+![](./images/test-5.png)
 
 测试：多次点击“下一题”，每次点击是否出现不同的图片？
 
@@ -235,11 +261,15 @@ rrentQuestionIndex同时充当QuestionList和PictureList两个列表的索引，
 
 在图8-14中，Ifelse块用来检验用户的输入（AnswerText.Text）是否等于AnswerList中的第currentQuestionIndex项。如果currentQuestionIndex=1，程序将用户的回答与AnswerList中的第一项“罗斯福”作对比，同样，如果currentQuestionIndex=2，则与AnswerList中的第二项“卡特”作对比，等等。如果对比结果相同，则执行then块，即RightWrongLabel显示“正确！”；如果对比结果不同，执行else块，即RightWrongLabel显示“不正确！”。
 
+![](./images/13-1.png)
 
 图8-13 检查用户的回答，并告诉用户答案是否正确
 
+![](./images/test-5.png)
+
 测试：尝试回答一道题，程序会显示你的回答是否正确。分别试验正确和错误的回答。你会注意到，回答正确，意味着你的输入必须与AnswerList中的答案完全匹配（包括大小写、标点或空格）。继续测试后面的问题，并确认运行正常。
 
+![](./images/14-7.png)
 
 图8-14 用户界面上的小问题
 应用运行正常，但你会看到，当单击“下一题”时，虽然图片和问题都切换到下一题，但“正确！”或“不正确！”的文本以及前一题中输入的回答仍然显示在屏幕上，如图8-14所示。尽管这一点无伤大雅，但用户肯定会发现这类的界面问题。将RightWrongLabel及AnswerText清空，需要在NextButton.Click事件处理程序中添加几个块，表8-9列出了所需的块。
@@ -257,8 +287,11 @@ rrentQuestionIndex同时充当QuestionList和PictureList两个列表的索引，
 
 用户单击“下一题”时，图8-15中的前两行用于清空RightWrongLabel和AnswerText。
 
+![](./images/15-6.png)
 
 图8-15 当转入下一题时，清空上一题的答案及对答案的反馈
+
+![](./images/test-5.png)
 
 测试：回答一个问题，然后点击“提交”，再单击Next按钮，上一题的答案及反馈是否消失了？
 
@@ -266,8 +299,11 @@ rrentQuestionIndex同时充当QuestionList和PictureList两个列表的索引，
 
 图8-16与8-17显示了“总统测验”应用中块的最终配置。
 
+![](./images/16-3.png)
 
 图8-16 “总统测验”应用中块的最终配置（之一）
+
+![](./images/17-3.png)
 
 图8-17 “总统测验”应用中块的最终配置（之二）
 ## 改进
