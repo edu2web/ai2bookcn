@@ -247,7 +247,7 @@ ListPicker组件用来显示列表项供用户选择。通过将ListPicker的Ele
 
 Web浏览器、服务器以及相关的web应用程序都是通过HTTP相互通信的。HTTP是现代全球因特网中使用的公共语言。–摘自《HTTP权威指南》
 
-![](./images/http_book.png)
+![](./images/http_book.jpg)
 
 2012年9月出版的《HTTP权威指南》
 ## HyperText
