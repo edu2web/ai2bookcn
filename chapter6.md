@@ -2,6 +2,7 @@
 
 本章将创建一个“向导”应用，带给你一次巴黎的梦幻之旅。而你的朋友，虽然不能与你同行，也能借此做一次虚拟的巴黎之旅。创建一个完整的地图应用看似复杂，不过App Inventor提供了ActivityStarter组件，可以为每个选定的虚拟位置打开对应的谷歌地图。创建过程分为两步，首先通过点选菜单打开埃菲尔铁塔、卢浮宫以及巴黎圣母院的地图；然后修改有关参数，使应用同时适用于卫星视图及普通地图视图。
 
+![](./images/0-17.png)
 
 ## 学习要点
 
@@ -12,6 +13,7 @@
 
 ## 设计组件
 
+![](./images/1-19.png)
 
 图6-1 设计器中的巴黎地图旅游
 首先创建一个名为“ParisMapTour”的新项目，界面中包含：
@@ -71,6 +73,7 @@ ActivityStarter组件用于在当前应用中，打开其他任何Android应用�
 
 如图6-2所示，变量destinations将调用make a list函数，其中插入了三个旅游目的地。
 
+![](./images/2-17.png)
 
 图6-2 在App Inventor中创建列表非常容易
 ## 让用户选择一个目的地
@@ -89,8 +92,11 @@ ListPicker组件用来显示列表项供用户选择。通过将ListPicker的Ele
 
 应用启动时触发Screen1.Initialize，如图6-3所示，事件处理程序通过设置ListPicker的Elements属性来显示三个备选目的地。
 
+![](./images/3-17.png)
 
 图6-3 在应用启动时需要执行的某些操作必须放在Screen1.Initialize事件处理程序中
+
+![](./images/test-7.png)
 
 测试：首先点击”connect”重新连接测试设备；然后在手机上点击 “选择巴黎的目的地”按钮，出现有三个选项的列表。
 ## 使用搜索打开地图
@@ -112,10 +118,12 @@ ListPicker组件用来显示列表项供用户选择。通过将ListPicker的Ele
 
 用户在ListPicker中选定的项存储在ListPicker.Selection中，选择触发了AfterPicking事件。如图6-4，DataUri属性是“http://maps.google.com/?q=”与选中项组合。如果用户选中了第一项“艾菲尔铁塔”，则DataUri将被设置为http://maps.google.com/?q=埃菲尔铁塔。
 
+![](./images/4-18.png)
 
 图6-4 设置DataUri打开选中的地图
 为打开地图设定了ActivityStarter的其他属性，因此ActivityStarter1.StartActivity块将打开地图应用，并根据DataUri所限定的条件进行搜索。
 
+![](./images/test-7.png)
 
 测试：重新连接测试设备，点击“选择巴黎的目的地”按钮。当选中了某个地点，是否出现了该地点的地图？谷歌地图提供的“后退”按钮，可以返回到你的应用中并做再次选择，怎么样，有用吗？（可能需要多次单击后退按钮）
 ## 设立虚拟旅游
@@ -131,6 +139,8 @@ ListPicker组件用来显示列表项供用户选择。通过将ListPicker的Ele
 3. 放大到你预期的级别；
 4. 选择你想要的视图类型（如：地址、卫星或街道视图）；
 5. 点击地图窗口左上部的Link(链接)按钮，（如图6-5）复制地图的URL地址。这个网址（或部分网址）将用于打开你应用中的地图。
+
+![](./images/5-18.png)
 
 图6-5 从浏览器中获取特定地图的URL地址
 表6-6显示了即将使用的URL地址。
@@ -152,6 +162,7 @@ ListPicker组件用来显示列表项供用户选择。通过将ListPicker的Ele
 
 创建列表变量DataURIs，其中包含了每个地图的DataURI，如图6-6所示，其中的选项分别与destinations列表中的选项相对应（即第一个dataURI对应第一个目的地：埃菲尔铁塔）。
 
+![](./images/6-18.png)
 
 图6-6 虚拟之旅的地图地址列表
 前两项显示了埃菲尔铁塔和卢浮宫的DataURIs，使用geo:协议。第三个DataURI是在太长，无法完整显示。从表6-6的最后一行复制此网址，并粘贴在text块中。
@@ -179,10 +190,12 @@ ListPicker组件用来显示列表项供用户选择。通过将ListPicker的Ele
 
 当用户选中ListPicker1中的某项时触发AfterPicking事件，如图6-7所示。选中的项，如“埃菲尔铁塔”，成为ListPicker.Selection。AfterPicking事件的处理程序借此找到所选项在列表destinations中的位置，即索引值。索引值对应于所选目的地在列表中的位置。所以，如果“艾菲尔铁塔”被选中，则index为1；如果“卢浮宫”被选中，index为2；同样，如果“巴黎圣母院”被选中，则index为3。
 
+![](./images/7-17.png)
 
 图6-7 根据用户在一个列表中的选择，在另一个列表中做对应的选择
 使用索引在另一个列表（本例中DataURIs）中做选择，选中项被设置为组件ActivityStarter的DataUri属性。一旦设置完成， ActivityStarter.StartActivity就可以打开地图了。
 
+![](./images/test-7.png)
 
 测试：在手机上点击“选择巴黎的目的地”按钮，将出现有三个选项的列表。选择其中一个，看看会出现哪张地图。
 ## 改进
@@ -234,6 +247,7 @@ ListPicker组件用来显示列表项供用户选择。通过将ListPicker的Ele
 
 Web浏览器、服务器以及相关的web应用程序都是通过HTTP相互通信的。HTTP是现代全球因特网中使用的公共语言。–摘自《HTTP权威指南》
 
+![](./images/http_book.png)
 
 2012年9月出版的《HTTP权威指南》
 ## HyperText
