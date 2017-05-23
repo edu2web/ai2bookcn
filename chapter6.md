@@ -2,6 +2,7 @@
 
 本章将创建一个“向导”应用，带给你一次巴黎的梦幻之旅。而你的朋友，虽然不能与你同行，也能借此做一次虚拟的巴黎之旅。创建一个完整的地图应用看似复杂，不过App Inventor提供了ActivityStarter组件，可以为每个选定的虚拟位置打开对应的谷歌地图。创建过程分为两步，首先通过点选菜单打开埃菲尔铁塔、卢浮宫以及巴黎圣母院的地图；然后修改有关参数，使应用同时适用于卫星视图及普通地图视图。
 
+![](./images/0-17.png)
 
 ## 学习要点
 
@@ -12,6 +13,7 @@
 
 ## 设计组件
 
+![](./images/1-19.png)
 
 图6-1 设计器中的巴黎地图旅游
 首先创建一个名为“ParisMapTour”的新项目，界面中包含：
@@ -22,20 +24,25 @@
 组件设计如图6-1所示。 表6-1中列出了创建用户界面所用的组件。从Palette中拖出组件，并修改为指定的名称。
 
 表6-1 巴黎地图旅游中用到的组件
-组件类型	面板中分组	命名	作用
-Image	User Interface	Image1	在屏幕上显示巴黎的静态图片
-Label	User Interface	Label1	显示文本：用Android发现巴黎
-ListPicker	User Interface	ListPicker1	显示备选目的地列表
-ActivityStarter	Connectivity	ActivityStarter1	选择目的地之后打开地图应用
+
+|组件类型|面板中分组|	命名	|作用|
+|:---|:----|:-----|:------|
+|Image	|User Interface	|Image1|	在屏幕上显示巴黎的静态图片|
+|Label|	User Interface	|Label1	|显示文本：用Android发现巴黎|
+|ListPicker|	User Interface	|ListPicker1	|显示备选目的地列表|
+|ActivityStarter	|Connectivity|	ActivityStarter1	|选择目的地之后打开地图应用|
+
 ## 设置ActivityStarter组件的属性
 
 ActivityStarter组件用于在当前应用中，打开其他任何Android应用，如浏览器、谷歌地图，甚至你自己的应用。当用户从你的应用中打开另一个应用时，可以通过单击“后退”按钮返回到你的应用。在ParisMapTour应用中，将根据用户选择打开地图应用，来显示指定的地图。用户可以点击“后退”按钮返回到你的应用中，并继续选择不同的目的地。 ActivityStarter是一个相当底层的组件，需要为它设置一些属性信息，这些信息对于Java Android SDK程序员来说非常熟悉，但对世界上其他99.999％的人来说都很陌生。在本应用中，输入如表6-2中指定的属性，并要小心地使用大小写字母，这非常重要。
 
 表6-2 用ActivityStarter打开谷歌地图必须设置的属性
-属性	值
-Action	android.intent.action.VIEW
-ActivityClass	com.google.android.maps.MapsActivity
-ActivityPackage	com.google.android.apps.maps
+
+|属性|	值|
+|:---|:----|
+|Action	|android.intent.action.VIEW|
+|ActivityClass	|com.google.android.maps.MapsActivity|
+|ActivityPackage	|com.google.android.apps.maps|
 
  
 还有一个DataUri属性必须在块编辑器中设置，用于在谷歌地图中打开指定地图。这个属性是动态的，即根据用户对目的地的选择而改变：埃菲尔铁塔、卢浮宫或巴黎圣母院。 现在切换到块编辑器，在编程添加组件行为之前，还有两个细节需要特别关照一下：
@@ -55,14 +62,18 @@ ActivityPackage	com.google.android.apps.maps
 打开块编辑器，用表6-3中列出的块创建一个destinations列表变量。
 
 表6-3 创建destinations列表变量所需的块
-块的类型	所在抽屉	作用
-Initialize global destinations to	Variables	创建一个目的地列表
-make a list	Lists	添加列表项
-“埃菲尔铁塔”	Text	第一个目的地
-“卢浮宫”	Text	第二个目的地
-“巴黎圣母院”	Text	第三个目的地
+
+|块的类型	|所在抽屉|	作用|
+|:---|:----|:-----|
+|Initialize global destinations to|	Variables|	创建一个目的地列表|
+|make a list|	Lists	|添加列表项|
+|“埃菲尔铁塔”	|Text	|第一个目的地|
+|“卢浮宫”	|Text	|第二个目的地|
+|“巴黎圣母院”	|Text	|第三个目的地|
+
 如图6-2所示，变量destinations将调用make a list函数，其中插入了三个旅游目的地。
 
+![](./images/2-17.png)
 
 图6-2 在App Inventor中创建列表非常容易
 ## 让用户选择一个目的地
@@ -70,16 +81,22 @@ make a list	Lists	添加列表项
 ListPicker组件用来显示列表项供用户选择。通过将ListPicker的Elements属性设置为某个list，可以预先将备选项目加载到ListPicker中。这里将ListPicker的Elements属性设置为刚刚创建的destinations列表。因为想在应用启动时显示此列表，因此加载列表行为必须在事件Screen1.Initialize中定义。表6-4中列出了所需的块。
 
 表6-4 在应用启动时加载ListPicker备选项所需的块
-块的类型	所在抽屉	作用
-Screen1.Initialize	Screen1	应用启动时触发该事件
-set ListPicker1.Elements to	ListPicker1	将Elements属性设置为需要显示的列表
-get global destinations	Variables	读取目的地列表
+
+|块的类型	|所在抽屉|	作用|
+|:---|:----|:-----|
+|Screen1.Initialize|	Screen1	|应用启动时触发该事件|
+|set ListPicker1.Elements to|	ListPicker1	|将Elements属性设置为需要显示的列表|
+|get global destinations	|Variables	|读取目的地列表|
+
 ## 块的作用
 
 应用启动时触发Screen1.Initialize，如图6-3所示，事件处理程序通过设置ListPicker的Elements属性来显示三个备选目的地。
 
+![](./images/3-17.png)
 
 图6-3 在应用启动时需要执行的某些操作必须放在Screen1.Initialize事件处理程序中
+
+![](./images/test-7.png)
 
 测试：首先点击”connect”重新连接测试设备；然后在手机上点击 “选择巴黎的目的地”按钮，出现有三个选项的列表。
 ## 使用搜索打开地图
@@ -87,21 +104,26 @@ get global destinations	Variables	读取目的地列表
 下面编写程序，当用户选中目的地时，ActivityStarter将打开谷歌地图并搜索选定的位置。 当用户选中ListPicker中的项目时，将触发ListPicker.AfterPicking事件；在AfterPicking事件的处理程序中，需要设置ActivityStarter组件的DataUri属性，让它知道要打开哪里的地图，然后用ActivityStarter.StartActivity打开谷歌地图。表6-5列出了此功能所需的块。
 
 表6-5 用ActivityStarter打开谷歌地图所需要的块
-块的类型	所在抽屉	作用
-ListPicker1.AfterPicking	ListPicker1	当用户选择ListPicker中的某项时触发该事件
-set ActivityStarter1.DataUri to	ActivityStarter1	DataUri告诉Maps在启动时打开哪里的地图
-join	Text	将两段文本连接成DataUri
-“http://maps.google.com/?q=”	Text	Maps所需的DataUri信息中的第一部分
-ListPicker1.Selection	ListPicker1	用户选中的项（DataUri信息中的第二部分）
-ActivityStarter1.StartActivity	ActivityStarter1	打开地图
+
+|块的类型	|所在抽屉|	作用|
+|:---|:----|:-----|
+|ListPicker1.AfterPicking|	ListPicker1	|当用户选择ListPicker中的某项时触发该事件|
+|set ActivityStarter1.DataUri to	|ActivityStarter1|	DataUri告诉Maps在启动时打开哪里的地图|
+|join|	Text	|将两段文本连接成DataUri|
+|“http://maps.google.com/?q=”|	Text	|Maps所需的DataUri信息中的第一部分|
+|ListPicker1.Selection	|ListPicker1	|用户选中的项（DataUri信息中的第二部分）|
+|ActivityStarter1.StartActivity	|ActivityStarter1	|打开地图|
+
 ## 块的作用
 
 用户在ListPicker中选定的项存储在ListPicker.Selection中，选择触发了AfterPicking事件。如图6-4，DataUri属性是“http://maps.google.com/?q=”与选中项组合。如果用户选中了第一项“艾菲尔铁塔”，则DataUri将被设置为http://maps.google.com/?q=埃菲尔铁塔。
 
+![](./images/4-18.png)
 
 图6-4 设置DataUri打开选中的地图
 为打开地图设定了ActivityStarter的其他属性，因此ActivityStarter1.StartActivity块将打开地图应用，并根据DataUri所限定的条件进行搜索。
 
+![](./images/test-7.png)
 
 测试：重新连接测试设备，点击“选择巴黎的目的地”按钮。当选中了某个地点，是否出现了该地点的地图？谷歌地图提供的“后退”按钮，可以返回到你的应用中并做再次选择，怎么样，有用吗？（可能需要多次单击后退按钮）
 ## 设立虚拟旅游
@@ -118,14 +140,19 @@ ActivityStarter1.StartActivity	ActivityStarter1	打开地图
 4. 选择你想要的视图类型（如：地址、卫星或街道视图）；
 5. 点击地图窗口左上部的Link(链接)按钮，（如图6-5）复制地图的URL地址。这个网址（或部分网址）将用于打开你应用中的地图。
 
+![](./images/5-18.png)
+
 图6-5 从浏览器中获取特定地图的URL地址
 表6-6显示了即将使用的URL地址。
 
 表6-6 在谷歌地图上完成虚拟之旅的URL地址
-地标	地图URL
-埃菲尔铁塔	https://maps.google.com/maps?q=%E5%9F%83%E8%8F%B2%E5%B0%94%E9%93%81%E5%A1%94&hl=zh-CN&ie=UTF8&ll=48.858369,2.294482&spn=0.001578,0.004128&sll=37.0625,-95.677068&sspn=61.153041,135.263672&t=h&z=19&iwloc=A。短网址：http://goo.gl/maps/e3oBk
-卢浮宫	https://maps.google.com/maps?q=%E5%8D%A2%E6%B5%AE%E5%AE%AB&hl=zh-CN&ie=UTF8&ll=48.86061,2.337642&spn=0.003155,0.008256&sll=48.85826,2.294582&sspn=0.001578,0.004128&t=h&z=18
-巴黎 圣母 院（街景）	https://maps.google.com/maps?q=%E5%B7%B4%E9%BB%8E%E5%9C%A3%E6%AF%8D%E9%99%A2&hl=zh-CN&ie=UTF8&ll=48.852545,2.348389&spn=0.006311,0.016512&sll=48.861595,2.33522&sspn=0.001585,0.004128&t=h&z=17&layer=c&cbll=48.852545,2.348389&panoid=3yzCn-eLwNIAAAQJORRDXw&cbp=12,30.77,,0,-16.32
+
+|地标|	地图URL|
+|:-------|:--------|
+|埃菲尔铁塔	|https://maps.google.com/maps?q=%E5%9F%83%E8%8F%B2%E5%B0%94%E9%93%81%E5%A1%94&hl=zh-CN&ie=UTF8&ll=48.858369,2.294482&spn=0.001578,0.004128&sll=37.0625,-95.677068&sspn=61.153041,135.263672&t=h&z=19&iwloc=A。短网址：http://goo.gl/maps/e3oBk|
+|卢浮宫|	https://maps.google.com/maps?q=%E5%8D%A2%E6%B5%AE%E5%AE%AB&hl=zh-CN&ie=UTF8&ll=48.86061,2.337642&spn=0.003155,0.008256&sll=48.85826,2.294582&sspn=0.001578,0.004128&t=h&z=18|
+|巴黎 圣母 院（街景）|	https://maps.google.com/maps?q=%E5%B7%B4%E9%BB%8E%E5%9C%A3%E6%AF%8D%E9%99%A2&hl=zh-CN&ie=UTF8&ll=48.852545,2.348389&spn=0.006311,0.016512&sll=48.861595,2.33522&sspn=0|.001585,0.004128&t=h&z=17&layer=c&cbll=48.852545,2.348389&panoid=3yzCn-eLwNIAAAQJORRDXw&cbp=12,30.77,,0,-16.32|
+
 将表6-6中的网址粘贴到浏览器中，你会看到前两个是放大的卫星视图，而第三个是街景图。 可以用这些URL直接打开地图，也可以用http://mapki.com中列出的谷歌地图协议。例如，仅凭GPS坐标来显示埃菲尔铁塔地图。从表6-6的长地址中找出这些坐标及地图geo:协议：
 
 * geo: 48.858369,2.294482&t=h&z=19
@@ -135,6 +162,7 @@ ActivityStarter1.StartActivity	ActivityStarter1	打开地图
 
 创建列表变量DataURIs，其中包含了每个地图的DataURI，如图6-6所示，其中的选项分别与destinations列表中的选项相对应（即第一个dataURI对应第一个目的地：埃菲尔铁塔）。
 
+![](./images/6-18.png)
 
 图6-6 虚拟之旅的地图地址列表
 前两项显示了埃菲尔铁塔和卢浮宫的DataURIs，使用geo:协议。第三个DataURI是在太长，无法完整显示。从表6-6的最后一行复制此网址，并粘贴在text块中。
@@ -144,25 +172,30 @@ ActivityStarter1.StartActivity	ActivityStarter1	打开地图
 在第一个版本的ListPicker.AfterPicking中，将ActivityStarter1的DataUri属性设置为字符串“http://maps.google.com/?q=”与用户所选的目的地（如“埃菲尔铁塔”）的串联（或组合）；在第二个版本中，AfterPicking程序则更为复杂，用户从一个列表（目的地）中选择，而DataUri要从另一列表（dataURIs）中读取。具体来说，当用户从ListPicker中选中一项，此时需要知道选中项的索引，以便用这个索引从dataURIs列表中选择正确的DataUri。稍后我们会详细解释索引的含义，但为了更好地描述这一概念，要先把这些块创建出来，便于我们理解。这项功能需要许多块，均在表6-7中列出。
 
 表6-7 根据用户在第一个列表中的选择，来确定在第二个列表中的选择，需要如下的块
-块的类型	所在抽屉	作用
-Initialize global index to	Variables	变量用来保存用户所选项的索引
-数字1	Math	变量index的初始值设为1
-ListPicker1.AfterPicking	ListPicker1	当用户选中一项时，触发该事件
-set global index to	Variables	将变量值设为所选项在列表中的排列位置
-index in list	Lists	获得所选项的位置（索引）
-ListPicker1.Selection	ListPicker1	所选项如”埃菲尔铁塔”，将其插入index in list的thing插槽
-get global destinations	Variables	将其插入index in list的list插槽
-set ActivityStarter1.DataUri	ActivityStarter1	在启动Activity打开地图之前，设置该属性
-select list item	Lists	从dataURIs列表中选择一项
-get global DataURIs	Variables	读取DataURIs列表
+
+|块的类型	|所在抽屉|	作用|
+|:---|:----|:-----|
+|Initialize global index to|	Variables|	变量用来保存用户所选项的索引|
+|数字1	|Math	|变量index的初始值设为1|
+|ListPicker1.AfterPicking|	ListPicker1	|当用户选中一项时，触发该事件|
+|set global index to|	Variables|	将变量值设为所选项在列表中的排列位置|
+|index in list	|Lists|	获得所选项的位置（索引）|
+|ListPicker1.Selection	|ListPicker1	|所选项如”埃菲尔铁塔”，将其插入index in list的thing插槽|
+|get global destinations	|Variables	|将其插入index in list的list插槽|
+|set ActivityStarter1.DataUri	|ActivityStarter1|	在启动Activity打开地图之前，设置该属性|
+|select list item	|Lists	|从dataURIs列表中选择一项|
+|get global DataURIs|	Variables|	读取DataURIs列表|
+
 ## 块的功能
 
 当用户选中ListPicker1中的某项时触发AfterPicking事件，如图6-7所示。选中的项，如“埃菲尔铁塔”，成为ListPicker.Selection。AfterPicking事件的处理程序借此找到所选项在列表destinations中的位置，即索引值。索引值对应于所选目的地在列表中的位置。所以，如果“艾菲尔铁塔”被选中，则index为1；如果“卢浮宫”被选中，index为2；同样，如果“巴黎圣母院”被选中，则index为3。
 
+![](./images/7-17.png)
 
 图6-7 根据用户在一个列表中的选择，在另一个列表中做对应的选择
 使用索引在另一个列表（本例中DataURIs）中做选择，选中项被设置为组件ActivityStarter的DataUri属性。一旦设置完成， ActivityStarter.StartActivity就可以打开地图了。
 
+![](./images/test-7.png)
 
 测试：在手机上点击“选择巴黎的目的地”按钮，将出现有三个选项的列表。选择其中一个，看看会出现哪张地图。
 ## 改进
@@ -214,6 +247,7 @@ get global DataURIs	Variables	读取DataURIs列表
 
 Web浏览器、服务器以及相关的web应用程序都是通过HTTP相互通信的。HTTP是现代全球因特网中使用的公共语言。–摘自《HTTP权威指南》
 
+![](./images/http_book.jpg)
 
 2012年9月出版的《HTTP权威指南》
 ## HyperText
