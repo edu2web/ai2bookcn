@@ -2,6 +2,7 @@
 
 你把车停得尽量靠近体育馆，但演唱会一结束，你却忘了车停在哪儿，你的同伴也很茫然。幸运的是，你的Android手机还在，它从来不忘事，你新装了一款热门应用“Android，我的车在哪儿？”有了这个应用，在停车时点一下按钮，Android的位置传感器会“记住”车的GPS坐标和地址。当稍后重新打开应用时，它会指给你从现在位置到停车位置的方向，问题解决了！
 
+![](./images/0-16.png)
 
 ## 学习要点
 
@@ -27,6 +28,7 @@
 * ActivityStarter组件：用于打开谷歌地图，以获得当前位置和记住位置之间的路线。
 按照图7-1所示的组件设计器截图来创建组件。
 
+![](./images/1-18.png)
 
 图7-1 组件设计器中应用的用户界面
 跟随表7-1，逐个拖出组件，并做相应设置，创建如图7-1所示的用户界面。
@@ -73,6 +75,8 @@
 |ActivityClass	|com.google.android.maps.MapsActivity|
 |ActivityPackage	|com.google.android.apps.maps|
 
+![](./images/note-4.png)
+
 提示：ActivityStarter组件可在应用中打开安装在设备上的任何其他Android应用。要打开地图，表7-2中的属性必须一字不差地输入；要打开其他应用，请参阅http://appinventor.googlelabs.com/learn/reference/other/activitystarter.html 中的App Inventor文档。
 ## 为组件添加行为
 
@@ -106,8 +110,11 @@
  
 如图7-2所示，latitude（经度）和longitude（纬度）是LocationChanged事件的参数，因此可以从Variables抽屉中抓取；但CurrentAddress则不是参数，而是LocationSensor的属性，因此要从LocationSensor抽屉里抓取。LocationSensor除了获取GPS位置信息之外，还通过调用谷歌地图，获得了与位置信息相对应的街道地址信息。 事件处理程序还启用了RememberButton，该按钮的初始设置为禁用（未选中），因为在传感器获得读数之前，用户不需要“记住”什么，而现在我们可以为“记住”行为编写程序了。
 
+![](./images/2-16.png)
 
 图7-2 使用LocationSensor读取当前位置信息
+
+![](./images/test-6.png)
 
 测试：用手机（wifi与电脑连接）实时测试位置感知应用是无效的。将程序打包并下载到手机上：选择“buildApp(provide QR code for .apk)”，按照提示在手机上打开应用。GPS及地址信息显示在屏幕上，同时RememberButton变为可用。
 如果没有获得读数，检查一下Android设备的位置及安全性设置，并尝试走到户外。要了解更多信息，请参见第23章。
@@ -134,8 +141,11 @@
 
 当用户点击RememberButton时，当前位置信息将写入“已记录”label中，如图7-3所示。 注意到DirectionsButton已可用，这会有点儿小麻烦，因为如果用户立即点击DirectionsButton，记住的位置也是当前位置，因而地图中不会提供方向有关的信息。但是，人们似乎不会这么做，当用户移动位置时（例如步行到演唱会），则当前位置将偏离已记录的位置。
 
+![](./images/3-16.png)
 
 图7-3 将当前位置信息写入“已记录”label中
+
+![](./images/test-6.png)
 
 测试：将应用的新版本下载到手机，并再次测试。当单击RememberButton时，当前位置信息是否被写入到“已记录”的label中？
 ## 显示“已记录”位置的方向
@@ -166,7 +176,11 @@
 |RememberedLongLabel.Text|	RememberedLongLabel|	已记录位置的经度|
 |ActivityStarter1.StartActivity	|ActivityStarter1	|打开地图|
 
+![](./images/4-17.png)
+
 图7-4 生成一个URL，用来打开地图并指示方向
+
+![](./images/test-6.png)
 
 测试：用手机下载新的版本并再次测试，一旦取得读数，单击RememberButton然后走开。当单击DirectionsButton时，地图是否提示您如何追溯你的脚步？点击几次后退按钮。你是否有回到了你的应用？
 ## 永久保存已记录的位置信息
@@ -193,12 +207,14 @@
 
 如图7-5所示，TinyDB1.StoreValue将LocationSensor属性中的位置信息保存到数据库中。你该记得在“开车不发短信”中，StoreValue函数有两个参数，tag与value，tag充当已存储数据的标识，value是你实际想保存的数据，即本例中的LocationSensor数据。
 
+![](./images/5-17.png)
 
 图7-5 在数据库中存储被“记住”的位置信息
 ## 启动应用时读取“记住”的位置信息
 
 将数据保存在数据库中，是为了以后可以调用它。在本应用中，如果用户在保存了位置信息之后退出应用，那么当应用重新打开时，你希望从数据库中读出信息并显示给用户。 在前几章中讨论过，应用的启动会触发Screen.Initialize事件，而在启动时从数据库中读取数据是一种惯例，我们也不例外。 使用TinyDB.GetValue函数来读取存储的GPS数据。要读取的存储数据包括地址、纬度及经度，因此要调用GetValue函数三次。像在“开车不发短信”中一样，要事先检查数据库中否保存了数据（如，第一次启动应用时，TinyDB.GetValue将返回一个空文本）。 挑战一下自己，看看是否可以独立创建这些块，然后再与图7-6进行比较。
 
+![](./images/6-17.png)
 
 图7-6 在应用启动时，从数据库中读取数据，如果数据不为空则显示数据
 ## 块的作用
@@ -208,11 +224,14 @@
 
 undefined
 
+![](./images/test-6.png)
+
 测试：将新版本应用下载到手机，并再次测试。点击RememberButton，并确保“记住”读数。关闭应用并再次打开。那些数据是否还在？
 ## 完整的应用：Android，我的车在哪儿？
 
 图7-7显示了完整的“Android，我的车在哪儿？”应用中所用到的块。
 
+![](./images/7-16.png)
 
 图7-7 “Android，我的车在哪儿”应用中所有的块
 ## 改进
