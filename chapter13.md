@@ -1,4 +1,5 @@
-第13章 亚马逊掌上书店  
+# 第13章 亚马逊掌上书店  
+
 十一月 20, 2015 ADMIN	一条评论
 假设你正在一家你很喜欢的书店里翻书，你想了解某一本书在Amazon.com（网上书店）的售价，那么这款“亚马逊掌上书店”应用就可以帮你实现这一愿望。通过扫描书上的条码，或输入书上的ISBN，应用将告诉你这本书当前在Amazon.com的最低售价。你也可以按照主题进行书籍的搜索。
 
@@ -49,7 +50,7 @@ API通常被称作“服务器端”程序，因为它们的特点就是为“�
 
 Amazon API为调用者提供了一个Web页面，来说明API的使用方法。虽然设计API的目的是为了与其它计算机交互，但在这个页面上，你可以看到这种交互的过程。 按照下列步骤，你可以尝试调用一个指定tag参数的GetValue，并在页面上看到返回的数据，这与你在App Inventor中使用TinyWebDB组件请求数据的结果完全一致：
 
-1. 在浏览器中访问网站http://aiamazonapi.appspot.com/，你会看到如图13-2所示的页面（页面中的中文为译者添加）。
+1. 在浏览器中访问网站http://aiamazonapi.appspot.com/ ，你会看到如图13-2所示的页面（页面中的中文为译者添加）。
 
 ![](./images/2-10.png)
 
@@ -180,11 +181,11 @@ foreach循环用来遍历返回结果中的每个数据项。回想一下，从A
 
 ## 定制化API
 
-我们所连接的API(http://aiamazonapi.appspot.com)是由Python(编程语言)和谷歌应用引擎(App Engine)创建的。开发者可以将应用引擎上创建并发布网站或服务(API)。只有当你的网站或服务非常受欢迎时(这意味着你使用了大量的谷歌服务)，才需要向App Engine付费。
+我们所连接的API(http://aiamazonapi.appspot.com )是由Python(编程语言)和谷歌应用引擎(App Engine)创建的。开发者可以将应用引擎上创建并发布网站或服务(API)。只有当你的网站或服务非常受欢迎时(这意味着你使用了大量的谷歌服务)，才需要向App Engine付费。
 
-这里使用的API只能访问全部Amazon API中的有限的部分：最多只能查询到五本书。如果想提供更多灵活的访问，例如，不仅是找书。你可以从http://appinventorapi.com/amazon/下载源代码，并按照自己的需要来修改它。
+这里使用的API只能访问全部Amazon API中的有限的部分：最多只能查询到五本书。如果想提供更多灵活的访问，例如，不仅是找书。你可以从http://appinventorapi.com/amazon/ 下载源代码，并按照自己的需要来修改它。
 
-这种修改确实需要有Python编程的知识，所以要小心！但是加入你已经通过本书完成了App Inventor的学习，那么是该考虑迎接新的挑战了。想要学习Python，可以查看网上的文章《如何像计算机科学一样思考：学会使用Python》(http://openbookproject.net//thinkCSpy/)，并查看本书第24章的“创建App Inventor API”部分。
+这种修改确实需要有Python编程的知识，所以要小心！但是加入你已经通过本书完成了App Inventor的学习，那么是该考虑迎接新的挑战了。想要学习Python，可以查看网上的文章《如何像计算机科学一样思考：学会使用Python》 (http://openbookproject.net//thinkCSpy/ ) ，并查看本书第24章的“创建App Inventor API”部分。
 
 ![](./images/11-9.png)
 
@@ -196,7 +197,7 @@ foreach循环用来遍历返回结果中的每个数据项。回想一下，从A
 如果用户的搜索没有任何返回值（比如当用户输入了一个无效的ISBN），程序没有任何反馈，修改或添加块，当没有返回值时通知用户；
 修改程序，只查找低于10美元的书籍；
 修改程序，当扫描一本书后，用声音来报告Amazon的最低售价（使用第七章“Android，我的车在哪儿”中用过的TextToSpeech组件）；
-从http://examples.oreilly.com/0636920016632/下载http://aiamazonapi.appspot.com API，修改它，使之能返回更详细的信息。例如，返回每本书在Amazon上的网址（URL），并随每本书的信息一同显示；用户点击URL可以打开相应的页面。正如前面提到的，修改API需要Python编程和谷歌App Engine的一些知识。更多信息请参见第24章。
+从http://examples.oreilly.com/0636920016632/ 下载http://aiamazonapi.appspot.com API，修改它，使之能返回更详细的信息。例如，返回每本书在Amazon上的网址（URL），并随每本书的信息一同显示；用户点击URL可以打开相应的页面。正如前面提到的，修改API需要Python编程和谷歌App Engine的一些知识。更多信息请参见第24章。
 小结
 
 以下是本章涵盖的内容：
