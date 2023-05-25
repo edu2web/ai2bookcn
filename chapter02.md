@@ -97,7 +97,8 @@ Canvas像一块画布，用户可以在上面绘画（画圆、画等）。添�
 ![](./images/test-11.png)
 
 测试：在设备上检查一下应用，猫的图片是否在顶部的一行按钮的下方？底部的按钮是否正常显示？
-为组建添加行为
+
+# 为组件添加行为
 
 下一步将定义组件的行为。编写一个绘画程序的难度似乎是难以想象的，但无疑App Inventor已经承担了大部分繁重的工作：这里有易于使用的块语言，不但可以处理用户的触摸及拖拽事件，也可以实现绘画及拍照功能。 Canvas组件具有Touched及Dragged事件，你可以针对DrawingCanvas.Touched（触碰）事件编程，并调用DrawingCanvas.DrawCircle（画圆）程序；也可以对DrawingCanvas.Dragged（拖拽）事件编程来调用DrawingCanvas.DrawLine（画线）程序。然后对按钮编程，来设置DrawingCanvas.PaintColor（画笔颜色）属性、清除DrawingCanvas，以及将DrawingCanvas的背景图片修改为照相机拍摄的图片。
 
